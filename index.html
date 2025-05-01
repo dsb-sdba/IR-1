@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form IR-1 Generator - Federal Court</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    window.jsPDF = window.jspdf.jsPDF;
+  </script>
+  <style>
+    /* CSS Styles */
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+      background-color: #f2f2ed;
+    }
+    h1, h2, h3 {
+      color: #333;
+      text-align: center;
+      margin: 0;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+    h2 {
+      font-size: 28px;
+      margin-top: 5px;
+      margin-bottom: 20px;
+    }
+    h3 {
+      font-size: 22px;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .form-section, .output-section {
+      margin-bottom: 30px;
+    }
+    .form-section h2 {
+      text-align: left;
+      margin-bottom: 10px;
+    }
+    .mandatory-note {
+      color: red;
+      font-size: 12px;
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      max-width: 600px;
+      padding: 6px;
+      margin-bottom: 15px;
+    }
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-right: 5px;
+    }
+    .button {
+      padding: 10px 20px;
+      background-color: #006fcf;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .button-secondary {
+      background-color: #f8f9fa;
+      color: #6c757d;
+      border: 1px solid #6c757d;
+    }
+    .button-secondary:hover {
+      background-color: #e2e6ea;
+      color: #6c757d;
+    }
+    .button:hover {
+      background-color: #005bb5;
+    }
+    .printable-form {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #fff;
+    }
+    .sample-answer {
+      font-style: italic;
+      color: #555;
+    }
+    .print-button {
+      margin-top: 20px;
+    }
+    .hidden {
+      display: none;
+    }
+    .save-buttons {
+      margin-top: 20px;
+    }
+    .save-buttons .button {
+      margin-right: 10px;
+    }
+    .center-text {
+      text-align: center;
+    }
+    .court-file-no {
+      text-align: right;
+      position: relative;
+      margin-right: 150px;
+    }
+    .normal-text {
+      font-weight: normal;
+    }
+    .italic-link {
+      font-style: italic;
+    }
+    .section-space {
+      margin-bottom: 20px;
+    }
+    .divider {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 20px 0;
+    }
+    .section-header {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .highlight {
+      border: 2px solid red;
+      padding: 5px;
+    }
+    .terms-section {
+      background: white;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .terms-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .terms-text {
+      margin: 20px 0;
+    }
+    .terms-text ul {
+      margin: 20px 0;
+      padding-left: 20px;
+    }
+    .terms-text li {
+      margin: 10px 0;
+    }
+    .terms-checkbox {
+      margin: 20px 0;
+      display: flex;
+      align-items: center;
+    }
+    .radio-group {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .radio-option input[type="radio"] {
+      margin: 0;
+    }
+    .radio-option label {
+      margin: 0;
+      display: inline;
+    }
+    .helper-text {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 5px;
+    }
+    #accept-button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printableForm, #printableForm * {
+        visibility: visible;
+      }
+      #printableForm {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header mb-05">
+    <!-- ... header content ... -->
+  </header>
+
+  <div id="all">
+    <div id="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/en/home">Home</a></li>
+                <li class="breadcrumb-item"><a href="">Representing Yourself</a></li>
+                <li class="breadcrumb-item">Form IR-1 Generator</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="card sidebar-menu mb-4">
+                  <div class="card-header">
+                    <h3 class="h4 panel-title">Forms</h3>
+                  </div>
+                  <div class="card-body">
+                    <ul class="nav flex-column nav-pills">
+                      <li class="nav-left">
+                        <a href="#" class="nav-link active">Form IR-1</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-9">
+                <div id="checkout" class="col-lg-12">
+                  <div class="box">
+                    <h1 id="cont">Form IR-1: Generate an Application for Leave and for Judicial Review</h1>
+                    <div id="terms-overlay" class="terms-section">
+                      <div class="terms-content">
+                        <h2>Terms of Use</h2>
+                        <div class="terms-text">
+                          <p>Before using this form generator, please read and acknowledge the following:</p>
+                          <ul>
+                            <li>This tool only generates a PDF version of Form IR-1 based on the information you provide. It does not file the form with the Federal Court. Follow the instructions at <a href="https://www.fct-cf.gc.ca/en/pages/representing-yourself/practice-guides/how-to-file-an-application-for-leave-and-for-judicial-review-immigration#cont" target="_blank">How to file an Application for Leave and for Judicial review (Immigration)</a> to ensure your application is processed correctly. </li>
+                            <li>No data entered into this form is saved or stored - all processing happens directly in your browser.</li>
+                            <li>The RL-1 Generator requires JavaScript. If you have JavaScript disabled, the form will not work.</li>
+
+                              <li>We recommend that you seek the advice of a lawyer before relying on the results. For further information on legal assistance please refer to <a href="https://www.fct-cf.gc.ca/en/pages/representing-yourself/finding-legal-help" target="_blank">Finding Legal Help</a>. </li>
+                                <li>If you have specific questions about court rules, and court procedures that are not answered on this site, you can also speak with a <a href="https://www.fct-cf.gc.ca/en/pages/representing-yourself/registry/registry-offices" target="_blank">Registry Officer</a>. </li>
+                            
+                                <li>The RL-1 Generator is being provided for general use only. It is not intended to provide legal advice. Under no circumstances shall the Federal Court be held liable for any loss or damage which may be attributable to the reliance on and use of the generator. </li>
+                            <!-- <li>Generated forms must be printed, signed, and filed with the Federal Court according to their rules and procedures.</li> -->
+                          </ul>
+                          <div class="terms-checkbox">
+                            <input type="checkbox" id="accept-terms" required>
+                            <label for="accept-terms">I have read and understand these terms</label>
+                          </div>
+                          <button id="accept-button" class="button" disabled>Continue to Form Generator</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div id="form-content" class="hidden">
+                      <div>
+                        <p>This tool helps you generate a Form IR-1 for the Federal Court of Canada. Simply fill in the required information and click "Generate Completed IR-1" to create a PDF version of your form. For your privacy and security, none of the information you enter is saved or stored - the form is generated directly on your device. </p>
+                      </div>
+<!-- 
+                      <ul class="nav nav-tabs flex-column flex-md-row nav-pills text-center" id="tablist" role="tablist">
+                        <li class="nav-item">
+                          <a class="nav-link flex-sm-fill text-sm-center active" id="step-1-tab" href="#step-1" role="tab">
+                            <i class="fa fa-map-marker"></i>Step 1:<br>Basic Information
+                          </a>
+                        </li>
+                      </ul> -->
+
+                      <div class="tab-content">
+                        <div class="tab-pane fade show active" id="step-1">
+                          <div class="form-group">
+                            <label for="applicantName">Applicant's Name <span class="text-danger">(required)</span></label>
+                            <input type="text" class="form-control" id="applicantName" required>
+                          </div>
+                          <div class="section-space">
+                            <label>Respondent's Name: <span style="color: red;">(required)</span></label>
+                            <select id="respondentSelect" onchange="showRespondentOther()">
+                              <option value="">-- Select Respondent --</option>
+                              <option value="The Minister of Citizenship and Immigration">
+                                The Minister of Citizenship and Immigration
+                              </option>
+                              <option value="The Minister of Public Safety and Emergency Preparedness">
+                                The Minister of Public Safety and Emergency Preparedness
+                              </option>
+                              <option value="Canada Border Services Agency">
+                                Employment and Social Development Canada
+                              </option>
+                              <option value="Other">Other</option>
+                            </select>
+                            <div id="respondentOtherDiv" class="hidden">
+                              <input type="text" id="respondentOther" placeholder="Specify other respondent"/>
+                            </div>
+                          </div>
+
+                          <div class="section-space">
+                            <label>Select the provision under which this application is made: <span style="color: red;">(required)</span></label>
+                            <select id="provision" required>
+                              <option value="">--Select Provision--</option>
+                              <option value="22.1(1)">
+                                SUBSECTION 22.1(1) OF THE <a href="https://laws.justice.gc.ca/eng/acts/C-29/" target="_blank">Citizenship Act</a>
+                              </option>
+                              <option value="72(1)">
+                                SUBSECTION 72(1) OF THE <a href="https://laws.justice.gc.ca/eng/acts/I-2.5/" target="_blank">Immigration and Refugee Protection Act</a>
+                              </option>
+                            </select>
+                          </div>
+
+                          <hr class="divider">
+
+                          <div class="section-space">
+                            <label id="mandamus-label">Mandamus Application: <span style="color: red;">(required)</span></label>
+                            <div id="mandamusContainer" class="radio-group">
+                              <div class="radio-option">
+                                <input type="radio" id="mandamusYes" name="mandamus" value="Yes" 
+                                  onclick="showMandamusDate()"
+                                  tabindex="0" /> 
+                                <label id="mandamus-yes-label" for="mandamusYes">Yes</label>
+                              </div>
+                              <div class="radio-option">
+                                <input type="radio" id="mandamusNo" name="mandamus" value="No" 
+                                  onclick="showMandamusDate()"
+                                  tabindex="0" /> 
+                                <label id="mandamus-no-label" for="mandamusNo">No</label>
+                              </div>
+                            </div>
+                            <div id="mandamusDateField" class="hidden">
+                              <br>
+                              <label>Date Application Submitted to Tribunal: <span style="color: red;">(required)</span></label>
+                              <input type="date" id="mandamusDate" />
+                            </div>
+                          </div>
+
+                          <hr class="divider" id="mandamusDivider">
+
+                          <div class="section-space">
+                            <label>Name of Tribunal: <span style="color: red;">(required)</span></label>
+                            <select id="tribunal" onchange="showOutsideCanadaField()" required>
+                              <option value="">--Select Tribunal--</option>
+                              <option value="Immigration, Refugees and Citizenship Canada – In Canada">
+                                Immigration, Refugees and Citizenship Canada – In Canada
+                              </option>
+                              <option value="Immigration, Refugees and Citizenship Canada – Outside Canada">
+                                Immigration, Refugees and Citizenship Canada – Outside Canada
+                              </option>
+                              <option value="Immigration and Refugee Board of Canada – Immigration Appeal Division">
+                                Immigration and Refugee Board of Canada – Immigration Appeal Division
+                              </option>
+                              <option value="Immigration and Refugee Board of Canada – Immigration Division">
+                                Immigration and Refugee Board of Canada – Immigration Division
+                              </option>
+                              <option value="Immigration and Refugee Board of Canada – Refugee Appeal Division">
+                                Immigration and Refugee Board of Canada – Refugee Appeal Division
+                              </option>
+                              <option value="Immigration and Refugee Board of Canada – Refugee Protection Division">
+                                Immigration and Refugee Board of Canada – Refugee Protection Division
+                              </option>
+                              <option value="Canada Border Services Agency">Canada Border Services Agency</option>
+                            </select>
+                          </div>
+
+                          <div class="section-space">
+                            <label>If Outside of Canada, please specify country: </label>
+                            <input type="text" id="outsideCanadaCountry" />
+                          </div>
+
+                          <div class="section-space">
+                            <label>Tribunal File No.: <span style="color: red;">(required)</span></label>
+                            <input type="text" id="tribunalFileNo" required />
+                          </div>
+
+                          <div class="section-space" id="decisionDateField">
+                            <label>Date of Decision: <span style="color: red;">(required)</span></label>
+                            <input type="date" id="decisionDate" />
+                          </div>
+
+                          <div class="section-space" id="communicationDateField">
+                            <label>Date Decision was Communicated to Applicant: <span style="color: red;">(required)</span></label>
+                            <input type="date" id="communicationDate" />
+                          </div>
+
+                          <div class="section-space">
+                            <label>Proceeding Type: <span style="color: red;">(required)</span></label>
+                            <select id="proceedingType" onchange="showOtherProceeding()" required>
+                              <option value="">--Select Proceeding Type--</option>
+                              <option value="(PT1) TRV">TRV</option>
+                              <option value="(PT2) Study Permit">Study Permit</option>
+                              <option value="(PT3) Work Permit">Work Permit</option>
+                              <option value="(PT4) PR">PR</option>
+                              <option value="(PT5) TRP">TRP</option>
+                              <option value="(PT6) H&C">H&amp;C</option>
+                              <option value="(PT7) PRRA">PRRA</option>
+                              <option value="(PT8) Refugees Abroad">Refugees Abroad</option>
+                              <option value="(PT9) IRB: RPD">IRB: RPD</option>
+                              <option value="(PT10) IRB: RAD">IRB: RAD</option>
+                              <option value="(PT11) IRB: ID">IRB: ID</option>
+                              <option value="(PT12) IRB: IAD">IRB: IAD</option>
+                              <option value="(PT13) Inadmissibility Report S.44">Inadmissibility Report S.44</option>
+                              <option value="(PT14) Inadmissibility Report Other">Inadmissibility Report Other</option>
+                              <option value="(PT15) Minister's Opinion">Minister's Opinion</option>
+                              <option value="(PT16) Mandamus">Mandamus</option>
+                              <option value="(PT17) Other">Other</option>
+                            </select>
+                            <div id="otherProceedingDiv" class="hidden">
+                              <label>Please specify:</label>
+                              <input type="text" id="otherProceeding" />
+                            </div>
+                          </div>
+
+                          <div class="section-space">
+                            <label id="written-reasons-label">Written Reasons Provided to Applicant: <span style="color: red;">(required)</span></label>
+                            <div id="writtenReasonsContainer" class="radio-group">
+                              <div class="radio-option">
+                                <input type="radio" id="writtenReasonsYes" name="writtenReasons" value="Yes" 
+                                  onclick="showWrittenReasonsRequest()"
+                                  tabindex="0" />
+                                <label id="written-reasons-yes-label" for="writtenReasonsYes">Yes</label>
+                              </div>
+                              <div class="radio-option">
+                                <input type="radio" id="writtenReasonsNo" name="writtenReasons" value="No" 
+                                  onclick="showWrittenReasonsRequest()"
+                                  tabindex="0" />
+                                <label id="written-reasons-no-label" for="writtenReasonsNo">No</label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div id="writtenReasonsRequestDiv" class="hidden">
+                            <label>Are you requesting Written Reasons be Provided? <span style="color: red;">(required)</span></label>
+                            <div id="writtenReasonsRequestContainer">
+                              <input type="radio" name="writtenReasonsRequest" value="Yes" /> Yes
+                              <input type="radio" name="writtenReasonsRequest" value="No" /> No
+                            </div>
+                          </div><br>
+
+                          <div class="section-space">
+                            <label>Other Details: <span style="color: red;">(required)</span></label>
+                            <div class="helper-text">Name, Address, and telephone number of Tribunal and, if the tribunal was composed of more than one person, the name of each person on the tribunal.</div>
+                            <textarea id="otherDetails" rows="4" required></textarea>
+                          </div>
+
+                          <div class="section-space">
+                            <label id="extension-label">Extension Request: <span style="color: red;">(required)</span></label>
+                            <div id="extensionContainer" class="radio-group">
+                              <div class="radio-option">
+                                <input type="radio" id="extensionYes" name="extension" value="Yes" 
+                                  onclick="showExtensionReason()"
+                                  tabindex="0" />
+                                <label id="extension-yes-label" for="extensionYes">Yes</label>
+                              </div>
+                              <div class="radio-option">
+                                <input type="radio" id="extensionNo" name="extension" value="No" 
+                                  onclick="showExtensionReason()"
+                                  tabindex="0" />
+                                <label id="extension-no-label" for="extensionNo">No</label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div id="extensionReasonDiv" class="hidden">
+                            <label>Please provide reasons for the extension: <span style="color: red;">(required)</span></label>
+                            <div class="helper-text">Explain the special reasons for requesting an extension of time.</div>
+                            <textarea id="extensionReason" rows="4"></textarea>
+                          </div>
+
+                          <hr class="divider">
+
+                          <h3 class="section-header">Case Specific Details</h3>
+
+                          <div class="section-space">
+                            <label>If the application for leave is granted, the applicant seeks the following relief by way of a judicial review: <span style="color: red;">(required)</span></label>
+                            <div class="helper-text">Set out the precise relief sought should leave be granted, including any statutory provision or rule relied on.</div>
+                            <textarea id="reliefSought" rows="4" required></textarea>
+                          </div>
+
+                          <div class="section-space">
+                            <label>If the application for leave is granted, the application for judicial review is to be based on the following grounds: <span style="color: red;">(required)</span></label>
+                            <div class="helper-text">Set out the grounds to be argued, including a reference to any statutory provision or rule to be relied on.</div>
+                            <textarea id="grounds" rows="4" required></textarea>
+                          </div>
+
+                          <div class="section-space">
+                            <label>If the application for leave is granted, the applicant proposes that the judicial review be heard at: <span style="color: red;">(required)</span></label>
+                            <select id="hearingLocation" onchange="showOtherHearingLocation()" required>
+                              <option value="">-- Select Location --</option>
+                              <option value="Calgary, AB - 635 Eighth Avenue S.W.">Calgary, AB - 635 Eighth Avenue S.W.</option>
+                              <option value="Charlottetown, PEI - 42 Water Street">Charlottetown, PEI - 42 Water Street</option>
+                              <option value="Edmonton, AB - 10060 Jasper Avenue">Edmonton, AB - 10060 Jasper Avenue</option>
+                              <option value="Fredericton, NB - 82 Westmorland Street">Fredericton, NB - 82 Westmorland Street</option>
+                              <option value="Halifax, NS - 1801 Hollis Street, 17th Floor">Halifax, NS - 1801 Hollis Street, 17th Floor</option>
+                              <option value="Iqaluit, NU - Justice Centre (Building 510)">Iqaluit, NU - Justice Centre (Building 510)</option>
+                              <option value="Montreal, QC - 30 McGill Street">Montreal, QC - 30 McGill Street</option>
+                              <option value="Ottawa, ON - 90 Sparks Street">Ottawa, ON - 90 Sparks Street</option>
+                              <option value="Quebec City, QC - 150 Rene-Levesque Est Blvd">Quebec City, QC - 150 Rene-Levesque Est Blvd</option>
+                              <option value="Regina, SK - 2425 Victoria Avenue">Regina, SK - 2425 Victoria Avenue</option>
+                              <option value="Saskatoon, SK - 520 Spadina Crescent East">Saskatoon, SK - 520 Spadina Crescent East</option>
+                              <option value="St. John's, NL - 354 Water Street">St. John's, NL - 354 Water Street</option>
+                              <option value="Toronto, ON - 180 Queen Street West">Toronto, ON - 180 Queen Street West</option>
+                              <option value="Vancouver, BC - 701 West Georgia Street">Vancouver, BC - 701 West Georgia Street</option>
+                              <option value="Whitehorse, YT - 2134 Second Avenue">Whitehorse, YT - 2134 Second Avenue</option>
+                              <option value="Winnipeg, MB - 363 Broadway">Winnipeg, MB - 363 Broadway</option>
+                              <option value="Yellowknife, NT - 4903 49th Street">Yellowknife, NT - 4903 49th Street</option>
+                              <option value="Other">Other</option>
+                            </select>
+                            <div id="hearingLocationOtherDiv" class="hidden">
+                              <input type="text" id="hearingLocationOther" placeholder="Specify other location" />
+                            </div>
+                          </div>
+
+                          <div class="section-space">
+                            <label id="language-label">Language of Proceeding: <span style="color: red;">(required)</span></label>
+                            <div id="languageContainer" class="radio-group">
+                              <div class="radio-option">
+                                <input type="checkbox" id="languageEnglish" name="language" value="English" 
+                                  onclick="uncheckBoth()"
+                                  tabindex="0" />
+                                <label id="language-english-label" for="languageEnglish">English</label>
+                              </div>
+                              <div class="radio-option">
+                                <input type="checkbox" id="languageFrench" name="language" value="French" 
+                                  onclick="uncheckBoth()"
+                                  tabindex="0" />
+                                <label id="language-french-label" for="languageFrench">French</label>
+                              </div>
+                              <div class="radio-option">
+                                <input type="checkbox" id="languageBoth" name="language" value="Both" 
+                                  onclick="uncheckOthers()"
+                                  tabindex="0" />
+                                <label id="language-both-label" for="languageBoth">Both</label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <hr class="divider">
+
+                          <h3 class="section-header">Contact Information</h3>
+
+                          <div class="section-space">
+                            <label>The application for leave was prepared by: <span style="color: red;">(required)</span></label>
+                            <div class="helper-text">As applicable, set out the name of the solicitor or party signed below or the name, address and telephone number of any other person who, for a fee or other consideration, prepared the application for leave.</div>
+                            <textarea id="preparedBy" rows="3" required></textarea>
+                          </div>
+
+                          <div class="section-space">
+                            <label>The applicant's electronic address for the service of documents is: <span style="color: red;">(required)</span></label>
+                            <div class="helper-text">Set out the electronic address for the service of documents specified in Form 141A of the Federal Court Rules, if any.</div>
+                            <textarea id="electronicAddress" rows="2" required></textarea>
+                          </div>
+
+                          <div class="section-space">
+                            <label>Name, Canadian Address, and Telephone number of solicitor or applicant: <span style="color: red;">(required)</span></label>
+                            <div class="helper-text">Enter the details of the solicitor or applicant.</div>
+                            <textarea id="solicitorInfo" rows="3" required></textarea>
+                          </div>
+
+                          <div class="section-space">
+                            <label>Name(s) and address(es) of respondent(s): <span style="color: red;">(required)</span></label>
+                            <div class="helper-text">Enter respondent's name and address.</div>
+                            <textarea name="respondentInfo[]" rows="2" required></textarea>
+                          </div>
+
+                          <div class="button-group">
+                            <button id="generateSampleBtn" class="button button-secondary">Sample (for testing)</button>
+                            <button id="generateCompletedBtn" class="button">Generate Completed IR-1</button>
+                          </div>
+
+                          <div class="output-section" id="outputSection">
+                            
+                            <div id="formOutput"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer">
+    <!-- ... footer content ... -->
+  </div>
+
+  <script>
+    let sampleMode = false;
+
+    function sampleText(text) {
+      return sampleMode ? `<span class="sample-answer">${text}</span>` : text;
+    }
+
+    function showRespondentOther() {
+      const select = document.getElementById('respondentSelect');
+      const otherDiv = document.getElementById('respondentOtherDiv');
+      otherDiv.classList.toggle('hidden', select.value !== 'Other');
+    }
+
+    function showMandamusDate() {
+      const mandamusYes = document.getElementById("mandamusYes");
+      const mandamusDateField = document.getElementById("mandamusDateField");
+      const decisionDateField = document.getElementById("decisionDateField");
+      const communicationDateField = document.getElementById("communicationDateField");
+      const mandamusDivider = document.getElementById("mandamusDivider");
+
+      if (mandamusYes.checked) {
+        mandamusDateField.classList.remove("hidden");
+        decisionDateField.style.display = "none";
+        communicationDateField.style.display = "none";
+      } else {
+        mandamusDateField.classList.add("hidden");
+        decisionDateField.style.display = "block";
+        communicationDateField.style.display = "block";
+      }
+      mandamusDivider.style.display = (mandamusYes.checked || document.getElementById("mandamusNo").checked) ? "none" : "block";
+    }
+
+    function showOutsideCanadaField() {
+      const outsideCanadaField = document.getElementById("outsideCanadaCountry");
+      if (outsideCanadaField) {
+        outsideCanadaField.classList.remove("hidden");
+      }
+    }
+
+    function showOtherProceeding() {
+      const proceedingSelect = document.getElementById("proceedingType");
+      const otherProceedingDiv = document.getElementById("otherProceedingDiv");
+      if (proceedingSelect.value === "(PT17) Other") {
+        otherProceedingDiv.classList.remove("hidden");
+      } else {
+        otherProceedingDiv.classList.add("hidden");
+        document.getElementById("otherProceeding").value = "";
+      }
+    }
+
+    function uncheckOthers() {
+      if (document.getElementById("languageBoth").checked) {
+        document.getElementById("languageEnglish").checked = false;
+        document.getElementById("languageFrench").checked = false;
+      }
+    }
+
+    function uncheckBoth() {
+      if (document.getElementById("languageEnglish").checked || document.getElementById("languageFrench").checked) {
+        document.getElementById("languageBoth").checked = false;
+      }
+    }
+
+    function addRespondent() {
+      const respondentsDiv = document.getElementById("respondents");
+      const newTextArea = document.createElement("textarea");
+      newTextArea.name = "respondentInfo[]";
+      newTextArea.rows = 2;
+      newTextArea.placeholder = "Enter respondent's name and address.";
+      newTextArea.required = true;
+      respondentsDiv.appendChild(newTextArea);
+    }
+
+    function showExtensionReason() {
+      const extensionYes = document.getElementById("extensionYes");
+      const extensionReasonDiv = document.getElementById("extensionReasonDiv");
+      extensionReasonDiv.classList.toggle("hidden", !extensionYes.checked);
+    }
+
+    function showWrittenReasonsRequest() {
+      const writtenReasonsNo = document.querySelector('input[name="writtenReasons"][value="No"]').checked;
+      const writtenReasonsRequestDiv = document.getElementById("writtenReasonsRequestDiv");
+      writtenReasonsRequestDiv.classList.toggle("hidden", !writtenReasonsNo);
+    }
+
+    function showOtherHearingLocation() {
+      const select = document.getElementById('hearingLocation');
+      const otherDiv = document.getElementById('hearingLocationOtherDiv');
+      otherDiv.classList.toggle('hidden', select.value !== 'Other');
+    }
+
+    function formatTextArea(text) {
+      return text.replace(/\n/g, "<br>");
+    }
+
+    function formatDate(dateString) {
+      if (!dateString) return "";
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(dateString).toLocaleDateString('en-US', options);
+    }
+
+    function generateCompletedForm() {
+      sampleMode = false;
+      document.querySelectorAll('.highlight').forEach(element => element.classList.remove('highlight'));
+      const missingFields = [];
+      const requiredFields = [
+        { id: 'applicantName', label: 'Applicant\'s Name' },
+        { id: 'provision', label: 'Provision' },
+        { id: 'tribunal', label: 'Name of Tribunal' },
+        { id: 'tribunalFileNo', label: 'Tribunal File No.' },
+        { id: 'proceedingType', label: 'Proceeding Type' },
+        { id: 'reliefSought', label: 'Relief Sought' },
+        { id: 'grounds', label: 'Grounds for Judicial Review' },
+        { id: 'hearingLocation', label: 'Hearing Location' },
+        { id: 'preparedBy', label: 'Prepared By' },
+        { id: 'electronicAddress', label: 'Electronic Address' },
+        { id: 'solicitorInfo', label: 'Solicitor or Applicant Information' }
+      ];
+
+      requiredFields.forEach(field => {
+        const element = document.getElementById(field.id);
+        if (element && !element.value.trim()) {
+          missingFields.push(field.label);
+          element.classList.add('highlight');
+        }
+      });
+
+      const respondentSelect = document.getElementById('respondentSelect');
+      if (!respondentSelect.value) {
+        missingFields.push('Respondent\'s Name');
+        respondentSelect.classList.add('highlight');
+      } else if (respondentSelect.value === 'Other') {
+        const otherInput = document.getElementById('respondentOther');
+        if (!otherInput.value.trim()) {
+          missingFields.push('Other Respondent Name');
+          otherInput.classList.add('highlight');
+        }
+      }
+
+      const mandamusChecked = document.querySelector('input[name="mandamus"]:checked');
+      if (!mandamusChecked) {
+        missingFields.push('Mandamus Application');
+        document.getElementById('mandamusContainer').classList.add('highlight');
+      } else if (mandamusChecked.value === 'Yes') {
+        const mandamusDate = document.getElementById('mandamusDate');
+        if (!mandamusDate.value) {
+          missingFields.push('Mandamus Date');
+          mandamusDate.classList.add('highlight');
+        }
+      }
+
+      if (!document.querySelector('input[name="writtenReasons"]:checked')) {
+        missingFields.push('Written Reasons');
+        document.getElementById('writtenReasonsContainer').classList.add('highlight');
+      }
+
+      if (!document.querySelector('#languageEnglish:checked, #languageFrench:checked, #languageBoth:checked')) {
+        missingFields.push('Language of Proceeding');
+        document.getElementById('languageContainer').classList.add('highlight');
+      }
+
+      let respondentInfoMissing = false;
+      document.querySelectorAll('textarea[name="respondentInfo[]"]').forEach(textarea => {
+        if (!textarea.value.trim()) {
+          respondentInfoMissing = true;
+          textarea.classList.add('highlight');
+        }
+      });
+      if (respondentInfoMissing) missingFields.push('Respondent Information');
+
+      const extensionChecked = document.querySelector('input[name="extension"]:checked');
+      if (!extensionChecked) {
+        missingFields.push('Extension Request');
+        document.getElementById('extensionContainer').classList.add('highlight');
+      } else if (extensionChecked.value === "Yes") {
+        const extensionReason = document.getElementById("extensionReason");
+        if (!extensionReason.value.trim()) {
+          missingFields.push('Extension Reason');
+          extensionReason.classList.add('highlight');
+        }
+      }
+
+      const hearingLocationSelect = document.getElementById('hearingLocation');
+      if (hearingLocationSelect.value === 'Other') {
+        const hearingLocationOther = document.getElementById('hearingLocationOther');
+        if (!hearingLocationOther.value.trim()) {
+          missingFields.push('Hearing Location');
+          hearingLocationOther.classList.add('highlight');
+        }
+      }
+
+      if (missingFields.length > 0) {
+        alert('Please fill out the following required fields:\n- ' + missingFields.join('\n- '));
+        return;
+      }
+
+      generateAndDownloadPDF();
+    }
+
+    function generateAndDownloadPDF() {
+      console.log("Generating PDF...");
+      const tempDiv = document.createElement('div');
+      tempDiv.style.position = 'absolute';
+      tempDiv.style.left = '-9999px';
+      tempDiv.style.width = '8.5in';  // Standard letter size
+      document.body.appendChild(tempDiv);
+      
+      tempDiv.innerHTML = generateFormContent();
+      console.log("Form content generated");
+      
+      html2canvas(tempDiv, {
+        scale: 2,  // Increase resolution
+        useCORS: true,  // Allow loading of external images
+        allowTaint: true,
+        backgroundColor: '#ffffff'
+      }).then(async canvas => {
+        console.log("Converting to PDF...");
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'pt', 'letter');  // Use letter size instead of A4
+        const imgWidth = pdf.internal.pageSize.getWidth();
+        const pageHeight = pdf.internal.pageSize.getHeight();
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        
+        let heightLeft = imgHeight;
+        let position = 0;
+        let page = 1;
+
+        // Add first page
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+
+        // Add subsequent pages if needed
+        while (heightLeft >= 0) {
+          position = -pageHeight * page;
+          pdf.addPage();
+          pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
+          page++;
+        }
+
+        pdf.save('Form_IR-1.pdf');
+        console.log("PDF saved");
+        
+        document.body.removeChild(tempDiv);
+      });
+    }
+
+    function generateFormContent() {
+      const applicantName = document.getElementById("applicantName").value || "";
+      const respondentSelect = document.getElementById("respondentSelect");
+      let respondentName = respondentSelect.value === 'Other'
+          ? (document.getElementById("respondentOther").value || "")
+          : respondentSelect.value;
+      const provision = document.getElementById("provision").value || "";
+      const mandamus = document.querySelector('input[name="mandamus"]:checked')?.value || "";
+      const mandamusDate = document.getElementById("mandamusDate").value || "";
+      const decisionDate = document.getElementById("decisionDate").value || "";
+      const communicationDate = document.getElementById("communicationDate").value || "";
+      const tribunal = document.getElementById("tribunal").value || "";
+      const outsideCanadaCountry = document.getElementById("outsideCanadaCountry").value || "";
+      const tribunalFileNo = document.getElementById("tribunalFileNo").value || "";
+      const proceedingType = document.getElementById("proceedingType").value || "";
+      const writtenReasons = document.querySelector('input[name="writtenReasons"]:checked')?.value || "";
+      const writtenReasonsRequest = document.querySelector('input[name="writtenReasonsRequest"]:checked')?.value || "";
+      const otherDetails = document.getElementById("otherDetails").value || "";
+      const extension = document.querySelector('input[name="extension"]:checked')?.value || "";
+      const extensionReason = document.getElementById("extensionReason").value || "";
+      const reliefSought = document.getElementById("reliefSought").value || "";
+      const grounds = document.getElementById("grounds").value || "";
+      const hearingLocation = document.getElementById("hearingLocation").value || "";
+      const languageOptions = [];
+      if (document.getElementById("languageEnglish").checked) languageOptions.push("English");
+      if (document.getElementById("languageFrench").checked) languageOptions.push("French");
+      if (document.getElementById("languageBoth").checked) languageOptions.push("Both");
+      const language = languageOptions.join(" and ") || "";
+      const preparedBy = document.getElementById("preparedBy").value || "";
+      const electronicAddress = document.getElementById("electronicAddress").value || "";
+      const solicitorInfo = document.getElementById("solicitorInfo").value || "";
+      const respondentInfos = Array.from(document.querySelectorAll('textarea[name="respondentInfo[]"]')).map(t => t.value.trim());
+      const respondentInfoText = respondentInfos.join("<br>");
+
+      let provisionText1 = "[ ] SUBSECTION 22.1(1) OF THE <a href=\"https://laws.justice.gc.ca/eng/acts/C-29/\" target=\"_blank\">Citizenship Act</a>;<br>";
+      let provisionText2 = "[ ] SUBSECTION 72(1) OF THE <a href=\"https://laws.justice.gc.ca/eng/acts/I-2.5/\" target=\"_blank\">Immigration and Refugee Protection Act</a>.";
+      if (provision === "22.1(1)") {
+        provisionText1 = "[X] SUBSECTION 22.1(1) OF THE <a href=\"https://laws.justice.gc.ca/eng/acts/C-29/\" target=\"_blank\">Citizenship Act</a>;<br>";
+      } else if (provision === "72(1)") {
+        provisionText2 = "[X] SUBSECTION 72(1) OF THE <a href=\"https://laws.justice.gc.ca/eng/acts/I-2.5/\" target=\"_blank\">Immigration and Refugee Protection Act</a>.";
+      }
+
+      let mandamusOutput = "";
+      if (mandamus === "Yes") {
+        mandamusOutput = `<p><strong>Mandamus Application:</strong> ${sampleText(mandamus)}</p>
+                        <p><strong>Date Application Submitted to Tribunal:</strong> ${sampleText(formatDate(mandamusDate))}</p>`;
+      } else if (mandamus === "No") {
+        mandamusOutput = `<p><strong>Mandamus Application:</strong> ${sampleText(mandamus)}</p>
+                        <p><strong>Date of Decision:</strong> ${sampleText(formatDate(decisionDate))}</p>
+                        <p><strong>Date Decision was Communicated to Applicant:</strong> ${sampleText(formatDate(communicationDate))}</p>`;
+      }
+
+      return `
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: white;
+          }
+          .printable-form {
+            width: 8.5in;
+            padding: 0.5in;
+            margin: 0 auto;
+            background: white;
+            font-size: 12pt;
+            line-height: 1.5;
+          }
+          .court-file-no {
+            text-align: right;
+            margin-bottom: 20px;
+          }
+          .center-text {
+            text-align: center;
+          }
+          .normal-text {
+            font-weight: normal;
+          }
+          p {
+            margin: 12pt 0;
+          }
+          h2 {
+            font-size: 16pt;
+            text-align: center;
+            margin: 24pt 0;
+          }
+          .signature-line {
+            border-top: 1px solid black;
+            width: 200px;
+            margin: 40px 0 10px 0;
+          }
+        </style>
+        <div class="printable-form">
+          <p class="court-file-no"><strong>Court File No.</strong></p>
+          <div style="text-align: center; margin-bottom: 10px;">
+            <img src="https://www.fct-cf.gc.ca/content/img/base/FCLogo_nb_e.png" alt="Federal Court Logo" style="max-width: 200px;">
+          </div>
+          <p class="center-text" style="font-size: 16px;"><strong>Form IR-1 (Rule 5)</strong></p>
+          <p class="center-text" style="font-size: 28px;"><strong>FEDERAL COURT</strong></p>
+          <p class="center-text"><strong>Between:</strong></p>
+          <p class="center-text normal-text">${sampleText(applicantName)}</p>
+          <p class="center-text" style="font-size: 16px;"><strong>Applicant(s)</strong></p>
+          <p class="center-text"><strong>and</strong></p>
+          <p class="center-text normal-text">${sampleText(respondentName)}</p>
+          <p class="center-text" style="font-size: 16px;"><strong>Respondent(s)</strong></p>
+          
+          <h2 class="center-text">Application for Leave and for Judicial Review</h2>
+          
+          <p><strong>TO THE RESPONDENT(S)</strong></p>
+          <p class="normal-text">
+            AN APPLICATION FOR LEAVE TO COMMENCE AN APPLICATION FOR JUDICIAL REVIEW has been commenced by the applicant(s) under<br>
+            ${provisionText1}
+            ${provisionText2}
+          </p>
+          
+          <p class="normal-text">
+            UNLESS A JUDGE OTHERWISE DIRECTS, THIS APPLICATION FOR LEAVE will be disposed of without personal appearance by the parties, in accordance with paragraph 22.1(2)(c) of the <a href="https://laws.justice.gc.ca/eng/acts/C-29/" target="_blank">Citizenship Act</a> or paragraph 72(2)(d) of the <a href="https://laws.justice.gc.ca/eng/acts/I-2.5/" target="_blank">Immigration and Refugee Protection Act</a>, as the case may be.<br>
+            IF YOU WISH TO OPPOSE THIS APPLICATION FOR LEAVE, you or a solicitor authorized to practise in Canada and acting for you must prepare a Notice of Appearance in Form IR-2 prescribed by the <a href="https://laws.justice.gc.ca/eng/regulations/SOR-93-22/" target="_blank">Federal Courts Citizenship, Immigration and Refugee Protection Rules</a>, serve it on the tribunal and each applicant's solicitor or, in the case where an applicant does not have a solicitor, serve it on the applicant, and file it, with proof after service, in the Registry, within 10 days after the day on which this application for leave is served.<br>
+            IF YOU FAIL TO DO SO, the Court may dispose of this application for leave and, if the leave is granted, of the subsequent application for judicial review without further notice to you.<br><br>
+            <strong>• Note:</strong><br>
+            Copies of the relevant Rules of Court, information on the local office of the Court and other necessary information may be obtained from any local office of the Federal Court or the Registry in Ottawa (telephone: 613-992-4238).
+          </p>
+          
+          ${mandamusOutput}
+          
+          <p><strong>Name of Tribunal:</strong> ${sampleText(tribunal)}</p>
+          <p><strong>If Outside Canada, please specify:</strong> ${sampleText(outsideCanadaCountry)}</p>
+          <p><strong>Tribunal File No.:</strong> ${sampleText(tribunalFileNo)}</p>
+          <p><strong>Proceeding Type:</strong> ${sampleText(proceedingType)}${proceedingType === "(PT17) Other" ? " - " + sampleText(document.getElementById("otherProceeding").value || "") : ""}</p>
+          <p><strong>Written Reasons Received:</strong> ${sampleText(writtenReasons)}</p>
+          ${writtenReasons === "No" ? `<p><strong>Request for Written Reasons:</strong> ${sampleText(writtenReasonsRequest)}</p>` : ""}
+          
+          <p><strong>Other Details:</strong> ${sampleText(otherDetails)}</p><br>
+          
+          ${extension === "Yes" 
+            ? `<p>
+                 <strong>The applicant also applies to the Court for an extension of time to file and serve the application under paragraph 22.1(2)(b) of the </strong>
+                 <a href="https://laws.justice.gc.ca/eng/acts/C-29/" target="_blank">Citizenship Act</a>
+                 <strong> or under paragraph 72(2)(c) of the </strong>
+                 <a href="https://laws.justice.gc.ca/eng/acts/I-2.5/" target="_blank">Immigration and Refugee Protection Act</a>
+                 <strong>, as the case may be, for the following special reasons:</strong>
+               </p>
+               <p>${sampleText(extensionReason)}</p>`
+            : ``}
+          
+          <p><strong>If the application for leave is granted, the applicant seeks the following relief by way of a judicial review:</strong></p>
+          <p>${sampleText(reliefSought)}</p>
+          
+          <p><strong>If the application for leave is granted, the application for judicial review is to be based on the following grounds:</strong></p>
+          <p>${sampleText(grounds)}</p>
+          
+          <p><strong>If the application for leave is granted, the applicant proposes that the judicial review be heard at:</p></strong>
+          <p style="margin-left: 20px;"><strong>• Location:</strong> ${sampleText(hearingLocation)}</p>
+		  <p style="margin-left: 20px;"><strong>• Language:</strong> ${sampleText(language)}</p>
+          
+          <br>
+          <p><strong>The application for leave was prepared by:</strong></p>
+          <p>${sampleText(preparedBy)}</p>
+          <br>
+          <p><strong>The applicant's electronic address for the service of documents is:</strong></p>
+          <p>${sampleText(electronicAddress)}</p>
+          <br>
+          <div class="signature-line"></div>
+          (Signature of solicitor or applicant)</p>
+          <p>${sampleText(solicitorInfo)}</p>
+          <br>
+          <p><strong>To:</strong> <br>${sampleText(respondentInfoText)}</p>
+        </div>
+      `;
+    }
+
+    function printForm() {
+      window.print();
+    }
+
+    function saveAsPDF() {
+      html2canvas(document.getElementById("printableForm")).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'pt', 'a4');
+        const imgWidth = pdf.internal.pageSize.getWidth();
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+        pdf.save('Form_IR-1.pdf');
+      });
+    }
+
+    function saveAsRTF() {
+      const printableForm = document.getElementById("printableForm");
+      const textContent = printableForm.innerText || printableForm.textContent;
+      const escapeRtf = text => text.replace(/\\/g, "\\\\").replace(/{/g, "\\{").replace(/}/g, "\\}").replace(/\n/g, "\\par ");
+      const rtfContent = `{\\rtf1\\ansi\\deff0\n${escapeRtf(textContent)}\n}`;
+      const blob = new Blob([rtfContent], { type: 'application/rtf' });
+      saveAs(blob, 'Form_IR-1.rtf');
+    }
+
+    function generateSampleForm() {
+      sampleMode = true;
+      document.getElementById("applicantName").value = "John Doe";
+      document.getElementById("respondentSelect").value = "The Minister of Citizenship and Immigration";
+      document.getElementById("provision").value = "22.1(1)";
+      document.getElementById("mandamusYes").checked = true;
+      document.getElementById("mandamusNo").checked = false;
+      document.getElementById("mandamusDate").value = "2024-03-01";
+      document.getElementById("decisionDate").value = "";
+      document.getElementById("communicationDate").value = "";
+      document.getElementById("tribunal").value = "Immigration, Refugees and Citizenship Canada – In Canada";
+      document.getElementById("tribunalFileNo").value = "12345-6789";
+      document.getElementById("outsideCanadaCountry").value = "Canada";
+      document.getElementById("proceedingType").value = "(PT1) TRV";
+      document.querySelector('input[name="writtenReasons"][value="Yes"]').checked = true;
+      showWrittenReasonsRequest();
+      document.getElementById("otherDetails").value = "Insert any case specific details here";
+      document.querySelector('input[name="extension"][value="Yes"]').checked = true;
+      showExtensionReason();
+      document.getElementById("extensionReason").value = "Due to unforeseen circumstances, an extension is requested for the following reasons:";
+      document.getElementById("reliefSought").value = "The applicant seeks the following relief:";
+      document.getElementById("grounds").value = "List the applicable grounds";
+      document.getElementById("hearingLocation").value = "Ottawa, ON - 90 Sparks Street";
+      document.getElementById("languageEnglish").checked = true;
+      document.getElementById("preparedBy").value = "Jane Doe, Solicitor";
+      document.getElementById("electronicAddress").value = "jane.doe@example.com";
+      document.getElementById("solicitorInfo").value = "Jane Doe Law Firm, 456 Legal Ave, Ottawa, ON";
+      document.querySelector('textarea[name="respondentInfo[]"]').value = "Government Building, 789 Government Rd, Ottawa, ON";
+      document.getElementById("mandamusDateField").classList.remove("hidden");
+      document.getElementById("decisionDateField").style.display = "none";
+      document.getElementById("communicationDateField").style.display = "none";
+      document.getElementById("respondentOtherDiv").classList.add("hidden");
+      generateAndDownloadPDF();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Terms of Use handling
+      const termsCheckbox = document.getElementById('accept-terms');
+      const acceptButton = document.getElementById('accept-button');
+      const termsOverlay = document.getElementById('terms-overlay');
+      const formContent = document.getElementById('form-content');
+      
+      termsCheckbox.addEventListener('change', function() {
+        acceptButton.disabled = !this.checked;
+      });
+      
+      acceptButton.addEventListener('click', function() {
+        if (termsCheckbox.checked) {
+          termsOverlay.classList.add('hidden');
+          formContent.classList.remove('hidden');
+        }
+      });
+
+      showRespondentOther();
+      showMandamusDate();
+      showOutsideCanadaField();
+      showWrittenReasonsRequest();
+      document.getElementById("generateSampleBtn").addEventListener("click", generateSampleForm);
+      document.getElementById("generateCompletedBtn").addEventListener("click", generateCompletedForm);
+    });
+  </script>
+</body>
+</html>
