@@ -300,9 +300,9 @@
                             <input type="text" class="form-control" id="applicantName" required>
                           </div>
                           <div class="section-space">
-                            <label>Respondent's name: <span style="color: red;">(required)</span></label>
+                            <label>Respondent: <span style="color: red;">(required)</span></label>
                             <select id="respondentSelect" onchange="showRespondentOther()">
-                              <option value="">-- Select Respondent --</option>
+                              <option value=""> Select respondent </option>
                               <option value="The Minister of Citizenship and Immigration">
                                 The Minister of Citizenship and Immigration
                               </option>
@@ -315,19 +315,20 @@
                               <option value="Other">Other</option>
                             </select>
                             <div id="respondentOtherDiv" class="hidden">
-                              <input type="text" id="respondentOther" placeholder="Specify other respondent"/>
+                              <div class="helper-text">Specify other respondent</div>
+                              <input type="text" id="respondentOther" />
                             </div>
                           </div>
 
                           <div class="section-space">
                             <label>Select the provision under which this application is made: <span style="color: red;">(required)</span></label>
                             <select id="provision" required>
-                              <option value="">--Select Provision--</option>
+                              <option value="">Select provision</option>
                               <option value="22.1(1)">
-                                SUBSECTION 22.1(1) OF THE <a href="https://laws.justice.gc.ca/eng/acts/C-29/" target="_blank">Citizenship Act</a>
+                                SUBSECTION 22.1(1) OF THE Citizenship Act</a>
                               </option>
                               <option value="72(1)">
-                                SUBSECTION 72(1) OF THE <a href="https://laws.justice.gc.ca/eng/acts/I-2.5/" target="_blank">Immigration and Refugee Protection Act</a>
+                                SUBSECTION 72(1) OF THE Immigration and Refugee Protection Act</a>
                               </option>
                             </select>
                           </div>
@@ -362,7 +363,7 @@
                           <div class="section-space">
                             <label>Name of tribunal: <span style="color: red;">(required)</span></label>
                             <select id="tribunal" onchange="showOutsideCanadaField()" required>
-                              <option value="">--Select Tribunal--</option>
+                              <option value="">Select tribunal</option>
                               <option value="Immigration, Refugees and Citizenship Canada – In Canada">
                                 Immigration, Refugees and Citizenship Canada – In Canada
                               </option>
@@ -397,18 +398,20 @@
 
                           <div class="section-space" id="decisionDateField">
                             <label>Date of decision: <span style="color: red;">(required)</span></label>
+                            <div class="helper-text">yyyy-mm-dd</div>
                             <input type="date" id="decisionDate" />
                           </div>
 
                           <div class="section-space" id="communicationDateField">
                             <label>Date decision was communicated to applicant: <span style="color: red;">(required)</span></label>
+                            <div class="helper-text">yyyy-mm-dd</div>
                             <input type="date" id="communicationDate" />
                           </div>
 
                           <div class="section-space">
                             <label>Proceeding type: <span style="color: red;">(required)</span></label>
                             <select id="proceedingType" onchange="showOtherProceeding()" required>
-                              <option value="">--Select Proceeding Type--</option>
+                              <option value="">Select Proceeding Type</option>
                               <option value="(PT1) TRV">TRV</option>
                               <option value="(PT2) Study Permit">Study Permit</option>
                               <option value="(PT3) Work Permit">Work Permit</option>
@@ -508,7 +511,7 @@
                           <div class="section-space">
                             <label>If the application for leave is granted, the applicant proposes that the judicial review be heard at: <span style="color: red;">(required)</span></label>
                             <select id="hearingLocation" onchange="showOtherHearingLocation()" required>
-                              <option value="">-- Select Location --</option>
+                              <option value=""> Select Location </option>
                               <option value="Calgary, AB - 635 Eighth Avenue S.W.">Calgary, AB - 635 Eighth Avenue S.W.</option>
                               <option value="Charlottetown, PEI - 42 Water Street">Charlottetown, PEI - 42 Water Street</option>
                               <option value="Edmonton, AB - 10060 Jasper Avenue">Edmonton, AB - 10060 Jasper Avenue</option>
