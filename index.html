@@ -16,6 +16,9 @@
   </script>
   <style>
     /* CSS Styles */
+    #cont {
+      text-align: left; /* Align the header to the left */
+    }
     body {
       font-family: sans-serif;
       margin: 20px;
@@ -41,6 +44,13 @@
       margin-bottom: 20px;
       text-align: left;
     }
+
+        #form-content {
+      background-color: #ffffff; /* Set background to white */
+      padding: 20px; /* Optional: Add padding for better spacing */
+      border-radius: 5px; /* Optional: Add rounded corners */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+    }
     .form-section, .output-section {
       margin-bottom: 30px;
     }
@@ -64,8 +74,21 @@
     textarea {
       width: 100%;
       max-width: 600px;
-      padding: 6px;
+      padding: 8px 12px;
       margin-bottom: 15px;
+      height: 38px;
+    }
+    textarea {
+    height: auto; /* Allow height to adjust based on rows */
+    resize: vertical; /* Allow users to resize vertically */
+    overflow: auto; /* Ensure scrollbars appear if needed */
+  }
+
+    select {
+      padding-right: 30px;  /* Add space for dropdown arrow */
+      background-color: #ffffff;  /* Ensure consistent background */
+      border: 1px solid #ced4da;  /* Bootstrap-style border */
+      border-radius: 4px;  /* Rounded corners */
     }
     input[type="radio"],
     input[type="checkbox"] {
@@ -146,16 +169,25 @@
       border: 2px solid red;
       padding: 5px;
     }
+
+
     .terms-section {
       background: white;
       padding: 20px;
       border-radius: 5px;
       margin-bottom: 20px;
     }
-    .terms-content {
-      max-width: 800px;
-      margin: 0 auto;
-    }
+    #terms-overlay {
+  margin: 0; /* Remove auto-centering */
+  text-align: left; /* Ensure text alignment is left */
+  max-width: 100%; /* Allow full width if needed */
+}
+
+.terms-content {
+  margin: 0; /* Remove centering */
+  text-align: left; /* Align content to the left */
+  max-width: none; /* Remove width restriction */
+}
     .terms-text {
       margin: 20px 0;
     }
@@ -169,16 +201,29 @@
     .terms-checkbox {
       margin: 20px 0;
       display: flex;
-      align-items: center;
+      align-items: bottom; /* Ensures proper vertical alignment */
+      gap: 10px; /* Optional: Adds spacing between the checkbox and label */
     }
+    .terms-checkbox input[type="checkbox"] {
+      width: 20px; /* Adjust size of checkbox */
+      height: 20px; /* Adjust size of checkbox */
+      cursor: pointer; /* Change cursor to pointer on hover */
+    }
+    .terms-checkbox label {
+      font-size: 16px; /* Adjust font size of label */
+      cursor: pointer; /* Change cursor to pointer on hover */
+      line-height: 1.4; /* Ensures the label text aligns with the checkbox */
+    }
+ 
     .radio-group {
       display: flex;
-      align-items: center;
-      gap: 20px;
+      flex-direction: column;  /* Change from row to column */
+      gap: 10px;  /* Adjust vertical spacing between options */
+      align-items: flex-start;
     }
     .radio-option {
       display: flex;
-      align-items: center;
+      align-items:flex-start;
       gap: 5px;
     }
     .radio-option input[type="radio"] {
@@ -187,6 +232,8 @@
     .radio-option label {
       margin: 0;
       display: inline;
+      line-height: 1;  /* Add this to ensure text aligns properly */
+      font-weight: normal; 
     }
     .helper-text {
       font-size: 0.9em;
@@ -210,6 +257,7 @@
         top: 0;
         width: 100%;
       }
+      
     }
   </style>
 </head>
@@ -259,7 +307,7 @@
                       <div class="terms-content">
                         <h2>Terms of Use</h2>
                         <div class="terms-text">
-                          <p>Before using this form generator, please read and acknowledge the following:</p>
+                          <p>Before using this tool, please read and acknowledge the following:</p>
                           <ul>
                             <li>This tool only generates a PDF version of Form IR-1 based on the information you provide. It does not file the form with the Federal Court. Follow the instructions at <a href="https://www.fct-cf.gc.ca/en/pages/representing-yourself/practice-guides/how-to-file-an-application-for-leave-and-for-judicial-review-immigration#cont" target="_blank">How to file an Application for Leave and for Judicial review (Immigration)</a> to ensure your application is processed correctly. </li>
                             <li>No data entered into this form is saved or stored - all processing happens directly in your browser.</li>
@@ -282,7 +330,8 @@
 
                     <div id="form-content" class="hidden">
                       <div>
-                        <p>This tool helps you generate a Form IR-1 for the Federal Court of Canada. Simply fill in the required information and click "Generate Completed IR-1" to create a PDF version of your form. For your privacy and security, none of the information you enter is saved or stored - the form is generated directly on your device. </p>
+                        
+                        <p>Fill in the required information to create a PDF version of the form. For your privacy and security, none of the information you enter is saved or stored - the form is generated directly on your device. To learn more, see <a href="https://www.fct-cf.ca/en/pages/representing-yourself/practice-guides/how-to-file-an-application-for-leave-and-for-judicial-review-immigration">How to file an Application for Leave and for Judicial review (Immigration)</a>.</p>
                       </div>
 <!-- 
                       <ul class="nav nav-tabs flex-column flex-md-row nav-pills text-center" id="tablist" role="tablist">
@@ -336,7 +385,7 @@
                           <hr class="divider">
 
                           <div class="section-space">
-                            <label id="mandamus-label">Mandamus application: <span style="color: red;">(required)</span></label>
+                            <label id="mandamus-label">Is this a mandamus application? <span style="color: red;">(required)</span></label>
                             <div id="mandamusContainer" class="radio-group">
                               <div class="radio-option">
                                 <input type="radio" id="mandamusYes" name="mandamus" value="Yes" 
@@ -398,13 +447,13 @@
 
                           <div class="section-space" id="decisionDateField">
                             <label>Date of decision: <span style="color: red;">(required)</span></label>
-                            <div class="helper-text">yyyy-mm-dd</div>
+                            <!-- <div class="helper-text">yyyy-mm-dd</div> -->
                             <input type="date" id="decisionDate" />
                           </div>
 
                           <div class="section-space" id="communicationDateField">
                             <label>Date decision was communicated to applicant: <span style="color: red;">(required)</span></label>
-                            <div class="helper-text">yyyy-mm-dd</div>
+                            <!-- <div class="helper-text">yyyy-mm-dd</div> -->
                             <input type="date" id="communicationDate" />
                           </div>
 
@@ -494,7 +543,7 @@
 
                           <hr class="divider">
 
-                          <h3 class="section-header">Case Specific Details</h3>
+                          <h3 class="section-header">Case-specific details</h3>
 
                           <div class="section-space">
                             <label>If the application for leave is granted, the applicant seeks the following relief by way of a judicial review: <span style="color: red;">(required)</span></label>
@@ -567,7 +616,7 @@
 
                           <div class="section-space">
                             <label>The applicant's electronic address for the service of documents is: <span style="color: red;">(required)</span></label>
-                            <div class="helper-text">Set out the electronic address for the service of documents specified in Form 141A of the Federal Court Rules, if any.</div>
+                            <div class="helper-text">Set out the electronic address (email) for the service of documents specified in Form 141A of the Federal Court Rules, if any.</div>
                             <textarea id="electronicAddress" rows="2" required></textarea>
                           </div>
 
