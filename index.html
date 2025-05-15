@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -309,14 +310,14 @@
                         <div class="terms-text">
                           <p>Before using this tool, please read and acknowledge the following:</p>
                           <ul>
-                            <li>This tool only generates a PDF version of Form IR-1 based on the information you provide. It does not file the form with the Federal Court. Follow the instructions at <a href="https://www.fct-cf.gc.ca/en/pages/representing-yourself/practice-guides/how-to-file-an-application-for-leave-and-for-judicial-review-immigration#cont" target="_blank">How to file an Application for Leave and for Judicial review (Immigration)</a> to ensure your application is processed correctly. </li>
+                            <li>This tool generates a PDF version of Form IR-1 based on the information you provide. It does not file the form with the Federal Court. Follow the instructions at <a href="https://www.fct-cf.gc.ca/en/pages/representing-yourself/practice-guides/how-to-file-an-application-for-leave-and-for-judicial-review-immigration#cont">How to file an Application for Leave and for Judicial review (Immigration)</a> to ensure your application is processed correctly. </li>
                             <li>No data entered into this form is saved or stored - all processing happens directly in your browser.</li>
-                            <li>The RL-1 Generator requires JavaScript. If you have JavaScript disabled, the form will not work.</li>
+                            <li>The IR-1 Generator requires JavaScript. If you have JavaScript disabled, the form will not work.</li>
 
-                              <li>We recommend that you seek the advice of a lawyer before relying on the results. For further information on legal assistance please refer to <a href="https://www.fct-cf.gc.ca/en/pages/representing-yourself/finding-legal-help" target="_blank">Finding Legal Help</a>. </li>
-                                <li>If you have specific questions about court rules, and court procedures that are not answered on this site, you can also speak with a <a href="https://www.fct-cf.gc.ca/en/pages/representing-yourself/registry/registry-offices" target="_blank">Registry Officer</a>. </li>
+                              <li>We recommend that you seek the advice of a lawyer before relying on the results. For further information on legal assistance please refer to <a href="https://www.fct-cf.gc.ca/en/pages/representing-yourself/finding-legal-help">Finding Legal Help</a>. </li>
+                                <li>If you have specific questions about court rules, and court procedures that are not answered on this site, you can also speak with a <a href="https://www.fct-cf.gc.ca/en/pages/representing-yourself/registry/registry-offices">Registry officer</a>. </li>
                             
-                                <li>The RL-1 Generator is being provided for general use only. It is not intended to provide legal advice. Under no circumstances shall the Federal Court be held liable for any loss or damage which may be attributable to the reliance on and use of the generator. </li>
+                                <li>The IR-1 Generator is being provided for general use only. It is not intended to provide legal advice. Under no circumstances shall the Federal Court be held liable for any loss or damage which may be attributable to the reliance on and use of the generator. </li>
                             <!-- <li>Generated forms must be printed, signed, and filed with the Federal Court according to their rules and procedures.</li> -->
                           </ul>
                           <div class="terms-checkbox">
@@ -331,7 +332,8 @@
                     <div id="form-content" class="hidden">
                       <div>
                         
-                        <p>Fill in the required information to create a PDF version of the form. For your privacy and security, none of the information you enter is saved or stored - the form is generated directly on your device. To learn more, see <a href="https://www.fct-cf.ca/en/pages/representing-yourself/practice-guides/how-to-file-an-application-for-leave-and-for-judicial-review-immigration">How to file an Application for Leave and for Judicial review (Immigration)</a>.</p>
+                        <p>Fill in the required information to create a PDF version of the form. For your privacy and security, none of the information you enter is saved or stored - the form is generated directly on your device. </p>
+                        <p>Once complete, you will need to submit the created PDF to the Registry. To learn more, refer to <a href="https://www.fct-cf.ca/en/pages/representing-yourself/practice-guides/how-to-file-an-application-for-leave-and-for-judicial-review-immigration">How to file an Application for Leave and for Judicial review (Immigration)</a>.</p>
                       </div>
 <!-- 
                       <ul class="nav nav-tabs flex-column flex-md-row nav-pills text-center" id="tablist" role="tablist">
@@ -345,7 +347,7 @@
                       <div class="tab-content">
                         <div class="tab-pane fade show active" id="step-1">
                           <div class="form-group">
-                            <label for="applicantName">Applicant's name <span class="text-danger">(required)</span></label>
+                            <label for="applicantName">Applicant's name <span style="color: red;">(required)</span></label>
                             <input type="text" class="form-control" id="applicantName" required>
                           </div>
                           <div class="section-space">
@@ -441,10 +443,33 @@
                           </div>
 
                           <div class="section-space">
-                            <label>Tribunal file No.: <span style="color: red;">(required)</span></label>
+                            <label>Tribunal file number: <span style="color: red;">(required)</span></label>
                             <input type="text" id="tribunalFileNo" required />
                           </div>
-
+<!-- Family files begin -->
+                          <div class="section-space">
+                            <label id="family-label">Are other files from the same family underway? <span style="color: red;">(required)</span></label>
+                            <div id="familyContainer" class="radio-group">
+                              <div class="radio-option">
+                                <input type="radio" id="familyYes" name="family" value="Yes" 
+                                  onclick="showFamilyFiles()"
+                                  tabindex="0" /> 
+                                <label id="family-yes-label" for="familyYes">Yes</label>
+                              </div>
+                              <div class="radio-option">
+                                <input type="radio" id="familyNo" name="family" value="No" 
+                                  onclick="showFamilyFiles()"
+                                  tabindex="0" /> 
+                                <label id="family-no-label" for="familyNo">No</label>
+                              </div>
+                            </div>
+                            <div id="familyFiles" > <!-- This should include class="hidden" when the checkboxes work correctly -->
+                              <br>
+                              <label>Enter any file numbers associated with other family members: <span style="color: red;">(required)</span></label>
+                              <textarea id="familyFileNumbers" rows="4" required></textarea>
+                            </div>
+                          </div>
+<!-- Family files End -->
                           <div class="section-space" id="decisionDateField">
                             <label>Date of decision: <span style="color: red;">(required)</span></label>
                             <!-- <div class="helper-text">yyyy-mm-dd</div> -->
@@ -460,19 +485,19 @@
                           <div class="section-space">
                             <label>Proceeding type: <span style="color: red;">(required)</span></label>
                             <select id="proceedingType" onchange="showOtherProceeding()" required>
-                              <option value="">Select Proceeding Type</option>
-                              <option value="(PT1) TRV">TRV</option>
+                              <option value="">Select proceeding type</option>
+                              <option value="(PT1) TRV">Temporary Resident Visa</option>
                               <option value="(PT2) Study Permit">Study Permit</option>
                               <option value="(PT3) Work Permit">Work Permit</option>
-                              <option value="(PT4) PR">PR</option>
-                              <option value="(PT5) TRP">TRP</option>
-                              <option value="(PT6) H&C">H&amp;C</option>
-                              <option value="(PT7) PRRA">PRRA</option>
+                              <option value="(PT4) PR">Permanent Residence</option>
+                              <option value="(PT5) TRP">Temporary Resident Permit</option>
+                              <option value="(PT6) H&C">Humanitarian and Companionate Considerations</option>
+                              <option value="(PT7) PRRA">Pre-Removal Risk Assessment</option>
                               <option value="(PT8) Refugees Abroad">Refugees Abroad</option>
-                              <option value="(PT9) IRB: RPD">IRB: RPD</option>
-                              <option value="(PT10) IRB: RAD">IRB: RAD</option>
-                              <option value="(PT11) IRB: ID">IRB: ID</option>
-                              <option value="(PT12) IRB: IAD">IRB: IAD</option>
+                              <option value="(PT9) IRB: RPD">Immigration and Refugee Board of Canada: Refugee Protection Division</option>
+                              <option value="(PT10) IRB: RAD">Immigration and Refugee Board of Canada: Refugee Appeal Division</option>
+                              <option value="(PT11) IRB: ID">Immigration and Refugee Board of Canada: Immigration Division</option>
+                              <option value="(PT12) IRB: IAD">Immigration and Refugee Board of Canada: Immigration Appeal Division</option>
                               <option value="(PT13) Inadmissibility Report S.44">Inadmissibility Report S.44</option>
                               <option value="(PT14) Inadmissibility Report Other">Inadmissibility Report Other</option>
                               <option value="(PT15) Minister's Opinion">Minister's Opinion</option>
@@ -503,11 +528,17 @@
                             </div>
                           </div>
 
-                          <div id="writtenReasonsRequestDiv" class="hidden">
+                          <div id="writtenReasonsRequestDiv" class="hidden section-space">
                             <label>Are you requesting written reasons be provided? <span style="color: red;">(required)</span></label>
-                            <div id="writtenReasonsRequestContainer">
-                              <input type="radio" name="writtenReasonsRequest" value="Yes" /> Yes
-                              <input type="radio" name="writtenReasonsRequest" value="No" /> No
+                            <div id="writtenReasonsRequestContainer" class="radio-group">
+                              <div class="radio-option">
+                              <input type="radio" name="writtenReasonsRequest" value="Yes" id="writtenReasonsRequestYes"/> 
+                              <label id="writtenReasonsRequest-yes-label" for="writtenReasonsRequestYes">Yes</label>
+                            </div>
+                            <div class="radio-option">
+                              <input type="radio" name="writtenReasonsRequest" value="No" id="writtenReasonsRequestNo"/> 
+                              <label id="written-reasonsRequest-no-label" for="writtenReasonsRequestNo">No</label>
+                            </div>
                             </div>
                           </div><br>
 
@@ -560,7 +591,7 @@
                           <div class="section-space">
                             <label>If the application for leave is granted, the applicant proposes that the judicial review be heard at: <span style="color: red;">(required)</span></label>
                             <select id="hearingLocation" onchange="showOtherHearingLocation()" required>
-                              <option value=""> Select Location </option>
+                              <option value=""> Select location </option>
                               <option value="Calgary, AB - 635 Eighth Avenue S.W.">Calgary, AB - 635 Eighth Avenue S.W.</option>
                               <option value="Charlottetown, PEI - 42 Water Street">Charlottetown, PEI - 42 Water Street</option>
                               <option value="Edmonton, AB - 10060 Jasper Avenue">Edmonton, AB - 10060 Jasper Avenue</option>
@@ -628,13 +659,13 @@
 
                           <div class="section-space">
                             <label>Name(s) and address(es) of respondent(s): <span style="color: red;">(required)</span></label>
-                            <div class="helper-text">Enter respondent's name and address.</div>
+                            <div class="helper-text">Enter each respondent's name and address.</div>
                             <textarea name="respondentInfo[]" rows="2" required></textarea>
                           </div>
 
                           <div class="button-group">
                             <button id="generateSampleBtn" class="button button-secondary">Sample (for testing)</button>
-                            <button id="generateCompletedBtn" class="button">Generate Completed IR-1</button>
+                            <button id="generateCompletedBtn" class="button">Generate IR-1 PDF</button>
                           </div>
 
                           <div class="output-section" id="outputSection">
@@ -688,6 +719,23 @@
         communicationDateField.style.display = "block";
       }
       mandamusDivider.style.display = (mandamusYes.checked || document.getElementById("mandamusNo").checked) ? "none" : "block";
+    }
+
+    function showfamilyFiles() {
+      const familyYes = document.getElementById("familyYes");
+      // const mandamusDateField = document.getElementById("mandamusDateField");
+      // const decisionDateField = document.getElementById("decisionDateField");
+      // const communicationDateField = document.getElementById("communicationDateField");
+      // const mandamusDivider = document.getElementById("mandamusDivider");
+
+      if (familyYes.checked) {
+        familyFiles.classList.remove("hidden");
+      } else {
+        familyFiles.classList.add("hidden");
+        // decisionDateField.style.display = "block";
+        // communicationDateField.style.display = "block";
+      }
+      familyDivider.style.display = (familyYes.checked || document.getElementById("familyNo").checked) ? "none" : "block";
     }
 
     function showOutsideCanadaField() {
@@ -764,17 +812,17 @@
       document.querySelectorAll('.highlight').forEach(element => element.classList.remove('highlight'));
       const missingFields = [];
       const requiredFields = [
-        { id: 'applicantName', label: 'Applicant\'s Name' },
+        { id: 'applicantName', label: 'Applicant\'s name' },
         { id: 'provision', label: 'Provision' },
-        { id: 'tribunal', label: 'Name of Tribunal' },
+        { id: 'tribunal', label: 'Name of tribunal' },
         { id: 'tribunalFileNo', label: 'Tribunal File No.' },
-        { id: 'proceedingType', label: 'Proceeding Type' },
-        { id: 'reliefSought', label: 'Relief Sought' },
-        { id: 'grounds', label: 'Grounds for Judicial Review' },
-        { id: 'hearingLocation', label: 'Hearing Location' },
-        { id: 'preparedBy', label: 'Prepared By' },
-        { id: 'electronicAddress', label: 'Electronic Address' },
-        { id: 'solicitorInfo', label: 'Solicitor or Applicant Information' }
+        { id: 'proceedingType', label: 'Proceeding type' },
+        { id: 'reliefSought', label: 'Relief sought' },
+        { id: 'grounds', label: 'Grounds for judicial review' },
+        { id: 'hearingLocation', label: 'Hearing location' },
+        { id: 'preparedBy', label: 'Prepared by' },
+        { id: 'electronicAddress', label: 'Electronic address' },
+        { id: 'solicitorInfo', label: 'Solicitor or applicant information' }
       ];
 
       requiredFields.forEach(field => {
@@ -787,7 +835,7 @@
 
       const respondentSelect = document.getElementById('respondentSelect');
       if (!respondentSelect.value) {
-        missingFields.push('Respondent\'s Name');
+        missingFields.push('Respondent\'s name');
         respondentSelect.classList.add('highlight');
       } else if (respondentSelect.value === 'Other') {
         const otherInput = document.getElementById('respondentOther');
@@ -931,7 +979,7 @@
       const languageOptions = [];
       if (document.getElementById("languageEnglish").checked) languageOptions.push("English");
       if (document.getElementById("languageFrench").checked) languageOptions.push("French");
-      if (document.getElementById("languageBoth").checked) languageOptions.push("Both");
+
       const language = languageOptions.join(" and ") || "";
       const preparedBy = document.getElementById("preparedBy").value || "";
       const electronicAddress = document.getElementById("electronicAddress").value || "";
