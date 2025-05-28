@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
+<!-- saved from url=(0042)https://dsb-sdba.github.io/IR-1/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
   <title>Form IR-1 Generator - Federal Court</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="./Form IR-1 Generator - Federal Court_files/bootstrap.min.css">
+  <link rel="stylesheet" href="./Form IR-1 Generator - Federal Court_files/all.css">
+  <link rel="stylesheet" href="./Form IR-1 Generator - Federal Court_files/css">
+  <script src="./Form IR-1 Generator - Federal Court_files/jspdf.umd.min.js.download"></script>
+  <script src="./Form IR-1 Generator - Federal Court_files/FileSaver.min.js.download"></script>
+  <script src="./Form IR-1 Generator - Federal Court_files/html2canvas.min.js.download"></script>
+  <script src="./Form IR-1 Generator - Federal Court_files/jquery-3.6.0.min.js.download"></script>
+  <script src="./Form IR-1 Generator - Federal Court_files/bootstrap.bundle.min.js.download"></script>
   <script>
     window.jsPDF = window.jspdf.jsPDF;
   </script>
@@ -273,8 +273,8 @@
           <div class="col-lg-12">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/en/home">Home</a></li>
-                <li class="breadcrumb-item"><a href="">Representing Yourself</a></li>
+                <li class="breadcrumb-item"><a href="https://dsb-sdba.github.io/en/home">Home</a></li>
+                <li class="breadcrumb-item"><a href="https://dsb-sdba.github.io/IR-1/index.html">Representing Yourself</a></li>
                 <li class="breadcrumb-item">Form IR-1 Generator</li>
               </ol>
             </nav>
@@ -292,7 +292,7 @@
                   <div class="card-body">
                     <ul class="nav flex-column nav-pills">
                       <li class="nav-left">
-                        <a href="#" class="nav-link active">Form IR-1</a>
+                        <a href="https://dsb-sdba.github.io/IR-1/index.html#" class="nav-link active">Form IR-1</a>
                       </li>
                     </ul>
                   </div>
@@ -320,10 +320,10 @@
                             <!-- <li>Generated forms must be printed, signed, and filed with the Federal Court according to their rules and procedures.</li> -->
                           </ul>
                           <div class="terms-checkbox">
-                            <input type="checkbox" id="accept-terms" required>
+                            <input type="checkbox" id="accept-terms" required="">
                             <label for="accept-terms">I have read and understand these terms</label>
                           </div>
-                          <button id="accept-button" class="button" disabled>Continue to form generator</button>
+                          <button id="accept-button" class="button" disabled="">Continue to form generator</button>
                         </div>
                       </div>
                     </div>
@@ -335,41 +335,46 @@
                         <p>Once complete, you will need to submit the created PDF to the Registry. To learn more, refer to <a href="https://www.fct-cf.ca/en/pages/representing-yourself/practice-guides/how-to-file-an-application-for-leave-and-for-judicial-review-immigration">How to file an Application for Leave and for Judicial review (Immigration)</a>.</p>
                       </div>
 
-                      <h3 class="section-header">Applicant information</h3>
+                      <h3 class="section-header">Section 1 - Applicant information</h3>
                       <div class="section-space">
                         <label>Application type: <span style="color: red;">(required)</span></label>
                         <div class="radio-group">
                           <div class="radio-option">
-                            <input type="radio" id="uniqueApplicant" name="applicantType" value="Unique" required>
+                            <input type="radio" id="uniqueApplicant" name="applicantType" value="Unique" required="">
                             <label for="uniqueApplicant">Unique applicant</label>
                           </div>
                           <div class="radio-option">
-                            <input type="radio" id="groupApplicant" name="applicantType" value="Group" required>
+                            <input type="radio" id="groupApplicant" name="applicantType" value="Group" required="">
                             <label for="groupApplicant">Group of applicants</label>
                           </div>
                         </div>
+                        <div id="applicants-container">
+  <!-- Dynamic applicant fields will be added here -->
+</div>
+<button type="button" id="add-applicant" class="button" style="display: none;">Add Applicant</button>
+
                       </div>
                       <div class="tab-content">
                         <div class="tab-pane fade show active" id="step-1">
                           <div class="form-group">
                             <label for="applicantName">Applicant's name <span style="color: red;">(required)</span></label>
-                            <input type="text" class="form-control" id="applicantName" required>
+                            <input type="text" class="form-control" id="applicantName" required="">
                           </div>
 
                           <div class="section-space">
                             <label>Valid Canadian address of applicant: <span style="color: red;">(required)</span></label>
     
-                            <textarea id="solicitorInfo" rows="3" required></textarea>
+                            <textarea id="solicitorInfo" rows="3" required=""></textarea>
                           </div>
 
                           <div class="section-space">
                             <label>Applicant's phone number: <span style="color: red;">(required)</span></label>
-                            <input type="text" id="applicantPhone" required></input>
+                            <input type="text" id="applicantPhone" required="">
                           </div>
 
                           <div class="section-space">
                             <label>Applicant's email address: <span style="color: red;">(required)</span></label>
-                            <input type="text" id="electronicAddress" required></input>
+                            <input type="text" id="electronicAddress" required="">
                           </div>
 
 
@@ -377,37 +382,39 @@
                             <label>Application for leave was prepared by: <span style="color: red;">(required)</span></label>
                             <div class="radio-group">
                               <div class="radio-option">
-                                <input type="radio" id="prepbyApplicant" name="prepType" value="Unique" required>
-                                <label for="prepType">Applicant</label>
+                                <input type="radio" id="prepbyApplicant" name="prepType" value="Applicant" required onclick="toggleThirdPartyQuestions()">
+                                <label for="prepbyApplicant">Applicant</label>
                               </div>
                               <div class="radio-option">
-                                <input type="radio" id="prepby3rdparty" name="prepby3rdparty" value="Group" required>
-                                <label for="prepby3rdparty">Third party</label>
+                                <input type="radio" id="prepby3rdparty" name="prepType" value="Third Party" required onclick="toggleThirdPartyQuestions()">
+                                <label for="prepby3rdparty">Third Party</label>
                               </div>
                             </div>
                           </div>
 
-                          <div class="section-space">
-                            <label>Third-party's name (person or company): <span style="color: red;">(required)</span></label>
-                            <input type="text" id="thirdPname" required></input>
-                          </div>
-                          <div class="section-space">
-                            <label>Third-party's address: <span style="color: red;">(required)</span></label>
-                            <textarea rows="3" id="thirdPAddress" required></textarea>
-                          </div>                           
-                          <div class="section-space">
-                            <label>Third-party phone number: <span style="color: red;">(required)</span></label>
-                            <input type="text" id="thirdPPhone" required></input>
-                          </div>
-                          <div class="section-space">
-                            <label>Third party's email address: <span style="color: red;">(required)</span></label>
-                            <input type="text" id="thirdPEmail" required></input>
+                          <div id="thirdPartyQuestions" class="hidden">
+                            <div class="section-space">
+                              <label>Third-party's name (person or company): <span style="color: red;">(required)</span></label>
+                              <input type="text" id="thirdPname" required="">
+                            </div>
+                            <div class="section-space">
+                              <label>Third-party's address: <span style="color: red;">(required)</span></label>
+                              <textarea rows="3" id="thirdPAddress" required=""></textarea>
+                            </div>                           
+                            <div class="section-space">
+                              <label>Third-party phone number: <span style="color: red;">(required)</span></label>
+                              <input type="text" id="thirdPPhone" required="">
+                            </div>
+                            <div class="section-space">
+                              <label>Third party's email address: <span style="color: red;">(required)</span></label>
+                              <input type="text" id="thirdPEmail" required="">
+                            </div>
                           </div>
                           <div class="section-space">
                             <label>Email address where the decision should be sent (if different from above): </label>
-                            <input type="text" id="serviceDocEmail" required></input>
+                            <input type="text" id="serviceDocEmail" required="">
                           </div>                                                                              
-                          <h3 class="section-header">Respondent information</h3>
+                          <h3 class="section-header">Section 2 - Respondent information</h3>
 
                           <div class="section-space">
                             <label>Respondent: <span style="color: red;">(required)</span></label>
@@ -420,70 +427,84 @@
                                 The Minister of Public Safety and Emergency Preparedness
                               </option>
                               <option value="Canada Border Services Agency">
-                                Employment and Social Development Canada
+                                The Minister of Employment and Social Development Canada
                               </option>
                               <option value="Other">Other</option>
                             </select>
                             <div id="respondentOtherDiv" class="hidden">
                               <div class="helper-text">Specify other respondent</div>
-                              <input type="text" id="respondentOther" />
+                              <input type="text" id="respondentOther">
                             </div>
                           </div>
-
                           <div class="section-space">
                             <label>Name(s) of respondent(s): <span style="color: red;">(required)</span></label>
                             <div class="helper-text">Include the specific....</div>
-                            <input type="text" name="respondentInfo[]" rows="2" required></input>
+                            <input type="text" name="respondentInfo[]" rows="2" required="">
                           </div>
                           <div class="section-space">
                             <label>Addresses(s) of respondent(s): <span style="color: red;">(required)</span></label>
                             <div class="helper-text">Enter each respondent's address.</div>
-                            <textarea name="respondentInfo[]" rows="2" required></textarea>
-                          </div>
+                            <textarea name="respondentInfo[]" rows="2" required=""></textarea>
+                          </div><div class="section-space"></div>
+                          <h3 class="section-header">Section 3 - Application information</h3>   
+                          <div class="section-space">
+                          <hr class="divider">
 
                           <div class="section-space">
+                            <label id="extension-label">Extension request: <span style="color: red;">(required)</span></label>
+                            <div id="extensionContainer" class="radio-group">
+                              <div class="radio-option">
+                                <input type="radio" id="extensionYes" name="extension" value="Yes" onclick="showExtensionReason()" tabindex="0">
+                                <label id="extension-yes-label" for="extensionYes">Yes</label>
+                              </div>
+                              <div class="radio-option">
+                                <input type="radio" id="extensionNo" name="extension" value="No" onclick="showExtensionReason()" tabindex="0">
+                                <label id="extension-no-label" for="extensionNo">No</label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div id="extensionReasonDiv" class="hidden">
+                            <label>Please provide reasons for the extension: <span style="color: red;">(required)</span></label>
+                            <div class="helper-text">Explain the special reasons for requesting an extension of time.</div>
+                            <textarea id="extensionReason" rows="4"></textarea>
+                          </div>
+                          <div class="section-space">
                             <label>Select the provision under which this application is made: <span style="color: red;">(required)</span></label>
-                            <select id="provision" required>
+                            <select id="provision" required="">
                               <option value="">Select provision</option>
                               <option value="22.1(1)">
-                                SUBSECTION 22.1(1) OF THE Citizenship Act</a>
+                                SUBSECTION 22.1(1) OF THE Citizenship Act
                               </option>
                               <option value="72(1)">
-                                SUBSECTION 72(1) OF THE Immigration and Refugee Protection Act</a>
+                                SUBSECTION 72(1) OF THE Immigration and Refugee Protection Act
                               </option>
                             </select>
                           </div>
-
-                          <hr class="divider">
-
                           <div class="section-space">
                             <label id="mandamus-label">Is this a mandamus application? <span style="color: red;">(required)</span></label>
                             <div id="mandamusContainer" class="radio-group">
                               <div class="radio-option">
-                                <input type="radio" id="mandamusYes" name="mandamus" value="Yes" 
-                                  onclick="showMandamusDate()"
-                                  tabindex="0" /> 
+                                <input type="radio" id="mandamusYes" name="mandamus" value="Yes" onclick="showMandamusDate()" tabindex="0"> 
                                 <label id="mandamus-yes-label" for="mandamusYes">Yes</label>
                               </div>
                               <div class="radio-option">
-                                <input type="radio" id="mandamusNo" name="mandamus" value="No" 
-                                  onclick="showMandamusDate()"
-                                  tabindex="0" /> 
+                                <input type="radio" id="mandamusNo" name="mandamus" value="No" onclick="showMandamusDate()" tabindex="0"> 
                                 <label id="mandamus-no-label" for="mandamusNo">No</label>
                               </div>
                             </div>
                             <div id="mandamusDateField" class="hidden">
                               <br>
                               <label>Date application submitted to tribunal: <span style="color: red;">(required)</span></label>
-                              <input type="date" id="mandamusDate" />
+                              <input type="date" id="mandamusDate">
                             </div>
                           </div>
 
-                          <hr class="divider" id="mandamusDivider">
+                          <hr class="divider" id="mandamusDivider" style="display: block;">
 
                           <div class="section-space">
                             <label>Name of tribunal: <span style="color: red;">(required)</span></label>
-                            <select id="tribunal" onchange="showOutsideCanadaField()" required>
+                            <select id="tribunal" onchange="showOutsideCanadaField()" required="">
                               <option value="">Select tribunal</option>
                               <option value="Immigration, Refugees and Citizenship Canada – In Canada">
                                 Immigration, Refugees and Citizenship Canada – In Canada
@@ -509,59 +530,55 @@
 
                           <div class="section-space">
                             <label>If outside of Canada, please specify country: </label>
-                            <input type="text" id="outsideCanadaCountry" />
+                            <input type="text" id="outsideCanadaCountry">
                           </div>
 
                           <div class="section-space">
                             <label>Tribunal file number: <span style="color: red;">(required)</span></label>
-                            <input type="text" id="tribunalFileNo" required />
+                            <input type="text" id="tribunalFileNo" required="">
                           </div>
 <!-- Family files begin -->
                           <div class="section-space">
                             <label id="family-label">Are other files from the same family underway? <span style="color: red;">(required)</span></label>
                             <div id="familyContainer" class="radio-group">
                               <div class="radio-option">
-                                <input type="radio" id="familyYes" name="family" value="Yes" 
-                                  onclick="showFamilyFiles()"
-                                  tabindex="0" /> 
+                                <input type="radio" id="familyYes" name="family" value="Yes" onclick="showFamilyFiles()" tabindex="0"> 
                                 <label id="family-yes-label" for="familyYes">Yes</label>
                               </div>
                               <div class="radio-option">
-                                <input type="radio" id="familyNo" name="family" value="No" 
-                                  onclick="showFamilyFiles()"
-                                  tabindex="0" /> 
+                                <input type="radio" id="familyNo" name="family" value="No" onclick="showFamilyFiles()" tabindex="0"> 
                                 <label id="family-no-label" for="familyNo">No</label>
                               </div>
                             </div>
-                            <div id="familyFiles" > <!-- This should include class="hidden" when the checkboxes work correctly -->
+                            <div id="familyFiles"> <!-- This should include class="hidden" when the checkboxes work correctly -->
                               <br>
                               <label>Enter any file numbers associated with other family members: <span style="color: red;">(required)</span></label>
-                              <textarea id="familyFileNumbers" rows="4" required></textarea>
+                              <textarea id="familyFileNumbers" rows="4" required=""></textarea>
                             </div>
                           </div>
 <!-- Family files End -->
-                          <div class="section-space" id="decisionDateField">
+                          <div class="section-space" id="decisionDateField" style="display: block;">
                             <label>Date of decision: <span style="color: red;">(required)</span></label>
                             <!-- <div class="helper-text">yyyy-mm-dd</div> -->
-                            <input type="date" id="decisionDate" />
+                            <input type="date" id="decisionDate">
                           </div>
 
-                          <div class="section-space" id="communicationDateField">
+                          <div class="section-space" id="communicationDateField" style="display: block;">
                             <label>Date decision was communicated to applicant: <span style="color: red;">(required)</span></label>
                             <!-- <div class="helper-text">yyyy-mm-dd</div> -->
-                            <input type="date" id="communicationDate" />
+                            <input type="date" id="communicationDate">
                           </div>
 
                           <div class="section-space">
                             <label>Proceeding type: <span style="color: red;">(required)</span></label>
-                            <select id="proceedingType" onchange="showOtherProceeding()" required>
+                            <select id="proceedingType" onchange="showOtherProceeding()" required="">
                               <option value="">Select proceeding type</option>
                               <option value="(PT1) TRV">Temporary Resident Visa</option>
                               <option value="(PT2) Study Permit">Study Permit</option>
                               <option value="(PT3) Work Permit">Work Permit</option>
                               <option value="(PT4) PR">Permanent Residence</option>
                               <option value="(PT5) TRP">Temporary Resident Permit</option>
-                              <option value="(PT6) H&C">Humanitarian and Companionate Considerations</option>
+                              <option value="(PT6) H&amp;C">Humanitarian and Companionate Considerations</option>
                               <option value="(PT7) PRRA">Pre-Removal Risk Assessment</option>
                               <option value="(PT8) Refugees Abroad">Refugees Abroad</option>
                               <option value="(PT9) IRB: RPD">Immigration and Refugee Board of Canada: Refugee Protection Division</option>
@@ -570,13 +587,13 @@
                               <option value="(PT12) IRB: IAD">Immigration and Refugee Board of Canada: Immigration Appeal Division</option>
                               <option value="(PT13) Inadmissibility Report S.44">Inadmissibility Report S.44</option>
                               <option value="(PT14) Inadmissibility Report Other">Inadmissibility Report Other</option>
-                              <option value="(PT15) Minister's Opinion">Minister's Opinion</option>
+                              <option value="(PT15) Minister&#39;s Opinion">Minister's Opinion</option>
                               <option value="(PT16) Mandamus">Mandamus</option>
                               <option value="(PT17) Other">Other</option>
                             </select>
                             <div id="otherProceedingDiv" class="hidden">
                               <label>Please specify:</label>
-                              <input type="text" id="otherProceeding" />
+                              <input type="text" id="otherProceeding">
                             </div>
                           </div>
 
@@ -584,15 +601,11 @@
                             <label id="written-reasons-label">Written reasons provided to applicant: <span style="color: red;">(required)</span></label>
                             <div id="writtenReasonsContainer" class="radio-group">
                               <div class="radio-option">
-                                <input type="radio" id="writtenReasonsYes" name="writtenReasons" value="Yes" 
-                                  onclick="showWrittenReasonsRequest()"
-                                  tabindex="0" />
+                                <input type="radio" id="writtenReasonsYes" name="writtenReasons" value="Yes" onclick="showWrittenReasonsRequest()" tabindex="0">
                                 <label id="written-reasons-yes-label" for="writtenReasonsYes">Yes</label>
                               </div>
                               <div class="radio-option">
-                                <input type="radio" id="writtenReasonsNo" name="writtenReasons" value="No" 
-                                  onclick="showWrittenReasonsRequest()"
-                                  tabindex="0" />
+                                <input type="radio" id="writtenReasonsNo" name="writtenReasons" value="No" onclick="showWrittenReasonsRequest()" tabindex="0">
                                 <label id="written-reasons-no-label" for="writtenReasonsNo">No</label>
                               </div>
                             </div>
@@ -602,46 +615,15 @@
                             <label>Are you requesting written reasons be provided? <span style="color: red;">(required)</span></label>
                             <div id="writtenReasonsRequestContainer" class="radio-group">
                               <div class="radio-option">
-                              <input type="radio" name="writtenReasonsRequest" value="Yes" id="writtenReasonsRequestYes"/> 
+                              <input type="radio" name="writtenReasonsRequest" value="Yes" id="writtenReasonsRequestYes"> 
                               <label id="writtenReasonsRequest-yes-label" for="writtenReasonsRequestYes">Yes</label>
                             </div>
                             <div class="radio-option">
-                              <input type="radio" name="writtenReasonsRequest" value="No" id="writtenReasonsRequestNo"/> 
+                              <input type="radio" name="writtenReasonsRequest" value="No" id="writtenReasonsRequestNo"> 
                               <label id="written-reasonsRequest-no-label" for="writtenReasonsRequestNo">No</label>
                             </div>
                             </div>
                           </div><br>
-
-                          <div class="section-space">
-                            <label>Other details: <span style="color: red;">(required)</span></label>
-                            <div class="helper-text">Name, address, and telephone number of tribunal and, if the tribunal was composed of more than one person, the name of each person on the tribunal.</div>
-                            <textarea id="otherDetails" rows="4" required></textarea>
-                          </div>
-
-                          <div class="section-space">
-                            <label id="extension-label">Extension request: <span style="color: red;">(required)</span></label>
-                            <div id="extensionContainer" class="radio-group">
-                              <div class="radio-option">
-                                <input type="radio" id="extensionYes" name="extension" value="Yes" 
-                                  onclick="showExtensionReason()"
-                                  tabindex="0" />
-                                <label id="extension-yes-label" for="extensionYes">Yes</label>
-                              </div>
-                              <div class="radio-option">
-                                <input type="radio" id="extensionNo" name="extension" value="No" 
-                                  onclick="showExtensionReason()"
-                                  tabindex="0" />
-                                <label id="extension-no-label" for="extensionNo">No</label>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div id="extensionReasonDiv" class="hidden">
-                            <label>Please provide reasons for the extension: <span style="color: red;">(required)</span></label>
-                            <div class="helper-text">Explain the special reasons for requesting an extension of time.</div>
-                            <textarea id="extensionReason" rows="4"></textarea>
-                          </div>
-
                           <hr class="divider">
 
                           <h3 class="section-header">Case-specific details</h3>
@@ -649,40 +631,40 @@
                           <div class="section-space">
                             <label>If the application for leave is granted, the applicant seeks the following relief by way of a judicial review: <span style="color: red;">(required)</span></label>
                             <div class="helper-text">Set out the precise relief sought should leave be granted, including any statutory provision or rule relied on.</div>
-                            <textarea id="reliefSought" rows="4" required></textarea>
+                            <textarea id="reliefSought" rows="4" required=""></textarea>
                           </div>
 
                           <div class="section-space">
                             <label>If the application for leave is granted, the application for judicial review is to be based on the following grounds: <span style="color: red;">(required)</span></label>
                             <div class="helper-text">Set out the grounds to be argued, including a reference to any statutory provision or rule to be relied on.</div>
-                            <textarea id="grounds" rows="4" required></textarea>
+                            <textarea id="grounds" rows="4" required=""></textarea>
                           </div>
 
                           <div class="section-space">
                             <label>If the application for leave is granted, the applicant proposes that the judicial review be heard at: <span style="color: red;">(required)</span></label>
-                            <select id="hearingLocation" onchange="showOtherHearingLocation()" required>
+                            <select id="hearingLocation" onchange="showOtherHearingLocation()" required="">
                               <option value=""> Select location </option>
-                              <option value="Calgary, AB - 635 Eighth Avenue S.W.">Calgary, AB - 635 Eighth Avenue S.W.</option>
-                              <option value="Charlottetown, PEI - 42 Water Street">Charlottetown, PEI - 42 Water Street</option>
-                              <option value="Edmonton, AB - 10060 Jasper Avenue">Edmonton, AB - 10060 Jasper Avenue</option>
-                              <option value="Fredericton, NB - 82 Westmorland Street">Fredericton, NB - 82 Westmorland Street</option>
-                              <option value="Halifax, NS - 1801 Hollis Street, 17th Floor">Halifax, NS - 1801 Hollis Street, 17th Floor</option>
-                              <option value="Iqaluit, NU - Justice Centre (Building 510)">Iqaluit, NU - Justice Centre (Building 510)</option>
-                              <option value="Montreal, QC - 30 McGill Street">Montreal, QC - 30 McGill Street</option>
-                              <option value="Ottawa, ON - 90 Sparks Street">Ottawa, ON - 90 Sparks Street</option>
-                              <option value="Quebec City, QC - 150 Rene-Levesque Est Blvd">Quebec City, QC - 150 Rene-Levesque Est Blvd</option>
-                              <option value="Regina, SK - 2425 Victoria Avenue">Regina, SK - 2425 Victoria Avenue</option>
-                              <option value="Saskatoon, SK - 520 Spadina Crescent East">Saskatoon, SK - 520 Spadina Crescent East</option>
-                              <option value="St. John's, NL - 354 Water Street">St. John's, NL - 354 Water Street</option>
-                              <option value="Toronto, ON - 180 Queen Street West">Toronto, ON - 180 Queen Street West</option>
-                              <option value="Vancouver, BC - 701 West Georgia Street">Vancouver, BC - 701 West Georgia Street</option>
-                              <option value="Whitehorse, YT - 2134 Second Avenue">Whitehorse, YT - 2134 Second Avenue</option>
-                              <option value="Winnipeg, MB - 363 Broadway">Winnipeg, MB - 363 Broadway</option>
-                              <option value="Yellowknife, NT - 4903 49th Street">Yellowknife, NT - 4903 49th Street</option>
+                              <option value="Calgary, AB - 635 Eighth Avenue S.W.">Calgary, AB</option>
+                              <option value="Charlottetown, PEI - 42 Water Street">Charlottetown, PEI</option>
+                              <option value="Edmonton, AB - 10060 Jasper Avenue">Edmonton, AB</option>
+                              <option value="Fredericton, NB - 82 Westmorland Street">Fredericton, NB</option>
+                              <option value="Halifax, NS - 1801 Hollis Street, 17th Floor">Halifax, NS</option>
+                              <option value="Iqaluit, NU - Justice Centre (Building 510)">Iqaluit, NU</option>
+                              <option value="Montreal, QC - 30 McGill Street">Montreal, QC</option>
+                              <option value="Ottawa, ON - 90 Sparks Street">Ottawa, ON</option>
+                              <option value="Quebec City, QC - 150 Rene-Levesque Est Blvd">Quebec City, QC</option>
+                              <option value="Regina, SK - 2425 Victoria Avenue">Regina, SK</option>
+                              <option value="Saskatoon, SK - 520 Spadina Crescent East">Saskatoon, SK</option>
+                              <option value="St. John&#39;s, NL - 354 Water Street">St. John's, NL</option>
+                              <option value="Toronto, ON - 180 Queen Street West">Toronto, ON</option>
+                              <option value="Vancouver, BC - 701 West Georgia Street">Vancouver, BC</option>
+                              <option value="Whitehorse, YT - 2134 Second Avenue">Whitehorse, YT</option>
+                              <option value="Winnipeg, MB - 363 Broadway">Winnipeg, MB</option>
+                              <option value="Yellowknife, NT - 4903 49th Street">Yellowknife, NT</option>
                               <option value="Other">Other</option>
                             </select>
                             <div id="hearingLocationOtherDiv" class="hidden">
-                              <input type="text" id="hearingLocationOther" placeholder="Specify other location" />
+                              <input type="text" id="hearingLocationOther" placeholder="Specify other location">
                             </div>
                           </div>
 
@@ -690,15 +672,11 @@
                             <label id="language-label">Language of proceeding: <span style="color: red;">(required)</span></label>
                             <div id="languageContainer" class="radio-group">
                               <div class="radio-option">
-                                <input type="checkbox" id="languageEnglish" name="language" value="English" 
-                                  onclick="uncheckBoth()"
-                                  tabindex="0" />
+                                <input type="checkbox" id="languageEnglish" name="language" value="English" onclick="uncheckBoth()" tabindex="0">
                                 <label id="language-english-label" for="languageEnglish">English</label>
                               </div>
                               <div class="radio-option">
-                                <input type="checkbox" id="languageFrench" name="language" value="French" 
-                                  onclick="uncheckBoth()"
-                                  tabindex="0" />
+                                <input type="checkbox" id="languageFrench" name="language" value="French" onclick="uncheckBoth()" tabindex="0">
                                 <label id="language-french-label" for="languageFrench">French</label>
                               </div>
                               
@@ -712,7 +690,7 @@
                           <div class="section-space">
                             <label>The application for leave was prepared by: <span style="color: red;">(required)</span></label>
                             <div class="helper-text">As applicable, set out the name of the solicitor or party signed below or the name, address and telephone number of any other person who, for a fee or other consideration, prepared the application for leave.</div>
-                            <textarea id="preparedBy" rows="3" required></textarea>
+                            <textarea id="preparedBy" rows="3" required=""></textarea>
                           </div>
 
 
@@ -743,28 +721,39 @@
   </div>
 
   <script>
+  function toggleThirdPartyQuestions() {
+    const prepByApplicant = document.getElementById("prepbyApplicant");
+    const thirdPartyQuestions = document.getElementById("thirdPartyQuestions");
+
+    if (prepByApplicant.checked) {
+      thirdPartyQuestions.classList.add("hidden");
+    } else {
+      thirdPartyQuestions.classList.remove("hidden");
+    }
+  }
+</script>
+  <script>
   document.addEventListener('DOMContentLoaded', function () {
-    // Add event listener for phone number validation
-    const applicantPhoneInput = document.getElementById('applicantPhone');
-    const form = document.querySelector('form'); // Replace with your form's selector if it's not <form>
+  const applicantPhoneInput = document.getElementById('applicantPhone');
 
-    applicantPhoneInput.addEventListener('input', function () {
-      const phonePattern = /^\d{10}$/; // Regular expression for 10-digit phone number
-      if (!phonePattern.test(this.value)) {
-        this.setCustomValidity('Please enter a valid 10-digit phone number.');
-      } else {
-        this.setCustomValidity('');
-      }
-    });
-
-    // Prevent form submission if validation fails
-    form.addEventListener('submit', function (event) {
-      if (!applicantPhoneInput.checkValidity()) {
-        event.preventDefault(); // Stop form submission
-        applicantPhoneInput.reportValidity(); // Show validation message
-      }
-    });
+  // Add event listener for phone number validation
+  applicantPhoneInput.addEventListener('input', function () {
+    const phonePattern = /^\d{3}-\d{3}-\d{4}$/; // Regular expression for 10-digit phone number in format 123-456-7890
+    if (!phonePattern.test(this.value)) {
+      this.setCustomValidity('Please enter a valid 10-digit phone number in the format 123-456-7890.');
+    } else {
+      this.setCustomValidity('');
+    }
   });
+
+  // Prevent form submission if validation fails
+  form.addEventListener('submit', function (event) {
+    if (!applicantPhoneInput.checkValidity()) {
+      event.preventDefault(); // Stop form submission
+      applicantPhoneInput.reportValidity(); // Show validation message
+    }
+  });
+});
 
     let sampleMode = false;
 
@@ -1284,6 +1273,66 @@
       document.getElementById("generateSampleBtn").addEventListener("click", generateSampleForm);
       document.getElementById("generateCompletedBtn").addEventListener("click", generateCompletedForm);
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+  const applicantsContainer = document.getElementById('applicants-container');
+  const addApplicantButton = document.getElementById('add-applicant');
+  const groupApplicantRadio = document.getElementById('groupApplicant');
+  const uniqueApplicantRadio = document.getElementById('uniqueApplicant');
+
+  // Function to add a new applicant
+  function addApplicant() {
+    const applicantDiv = document.createElement('div');
+    applicantDiv.classList.add('applicant');
+    applicantDiv.innerHTML = `
+      <div class="section-space">
+        <label>Applicant's name <span style="color: red;">(required)</span></label>
+        <input type="text" class="form-control applicant-name" required>
+      </div>
+      <div class="section-space">
+        <label>Valid Canadian address of applicant: <span style="color: red;">(required)</span></label>
+        <textarea class="form-control applicant-address" rows="3" required></textarea>
+      </div>
+      <div class="section-space">
+        <label>Applicant's phone number: <span style="color: red;">(required)</span></label>
+        <input type="text" class="form-control applicant-phone" required>
+      </div>
+      <div class="section-space">
+        <label>Applicant's email address: <span style="color: red;">(required)</span></label>
+        <input type="email" class="form-control applicant-email" required>
+      </div>
+      <button type="button" class="button button-secondary remove-applicant">Remove Applicant</button>
+    `;
+    applicantsContainer.appendChild(applicantDiv);
+
+    // Add event listener to the remove button
+    applicantDiv.querySelector('.remove-applicant').addEventListener('click', function () {
+      applicantDiv.remove();
+    });
+  }
+
+  // Toggle visibility of "Add Applicant" button based on application type
+  function toggleAddApplicantButton() {
+    if (uniqueApplicantRadio.checked) {
+      // Clear all dynamically added applicants
+      applicantsContainer.innerHTML = '';
+      addApplicantButton.style.display = 'none';
+    } else if (groupApplicantRadio.checked) {
+      addApplicantButton.style.display = 'block';
+    }
+  }
+
+  // Add event listener to the "Add Applicant" button
+  addApplicantButton.addEventListener('click', addApplicant);
+
+  // Add event listeners to the radio buttons
+  groupApplicantRadio.addEventListener('change', toggleAddApplicantButton);
+  uniqueApplicantRadio.addEventListener('change', toggleAddApplicantButton);
+
+  // Initialize the visibility of the buttons
+  toggleAddApplicantButton();
+});
   </script>
-</body>
-</html>
+
+
+</body></html>
