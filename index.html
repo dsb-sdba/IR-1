@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -335,21 +334,81 @@
                         <p>Fill in the required information to create a PDF version of the form. For your privacy and security, none of the information you enter is saved or stored - the form is generated directly on your device. </p>
                         <p>Once complete, you will need to submit the created PDF to the Registry. To learn more, refer to <a href="https://www.fct-cf.ca/en/pages/representing-yourself/practice-guides/how-to-file-an-application-for-leave-and-for-judicial-review-immigration">How to file an Application for Leave and for Judicial review (Immigration)</a>.</p>
                       </div>
-<!-- 
-                      <ul class="nav nav-tabs flex-column flex-md-row nav-pills text-center" id="tablist" role="tablist">
-                        <li class="nav-item">
-                          <a class="nav-link flex-sm-fill text-sm-center active" id="step-1-tab" href="#step-1" role="tab">
-                            <i class="fa fa-map-marker"></i>Step 1:<br>Basic Information
-                          </a>
-                        </li>
-                      </ul> -->
 
+                      <h3 class="section-header">Applicant information</h3>
+                      <div class="section-space">
+                        <label>Application type: <span style="color: red;">(required)</span></label>
+                        <div class="radio-group">
+                          <div class="radio-option">
+                            <input type="radio" id="uniqueApplicant" name="applicantType" value="Unique" required>
+                            <label for="uniqueApplicant">Unique applicant</label>
+                          </div>
+                          <div class="radio-option">
+                            <input type="radio" id="groupApplicant" name="applicantType" value="Group" required>
+                            <label for="groupApplicant">Group of applicants</label>
+                          </div>
+                        </div>
+                      </div>
                       <div class="tab-content">
                         <div class="tab-pane fade show active" id="step-1">
                           <div class="form-group">
                             <label for="applicantName">Applicant's name <span style="color: red;">(required)</span></label>
                             <input type="text" class="form-control" id="applicantName" required>
                           </div>
+
+                          <div class="section-space">
+                            <label>Valid Canadian address of applicant: <span style="color: red;">(required)</span></label>
+    
+                            <textarea id="solicitorInfo" rows="3" required></textarea>
+                          </div>
+
+                          <div class="section-space">
+                            <label>Applicant's phone number: <span style="color: red;">(required)</span></label>
+                            <input type="text" id="applicantPhone" required></input>
+                          </div>
+
+                          <div class="section-space">
+                            <label>Applicant's email address: <span style="color: red;">(required)</span></label>
+                            <input type="text" id="electronicAddress" required></input>
+                          </div>
+
+
+                          <div class="section-space">
+                            <label>Application for leave was prepared by: <span style="color: red;">(required)</span></label>
+                            <div class="radio-group">
+                              <div class="radio-option">
+                                <input type="radio" id="prepbyApplicant" name="prepType" value="Unique" required>
+                                <label for="prepType">Applicant</label>
+                              </div>
+                              <div class="radio-option">
+                                <input type="radio" id="prepby3rdparty" name="prepby3rdparty" value="Group" required>
+                                <label for="prepby3rdparty">Third party</label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="section-space">
+                            <label>Third-party's name (person or company): <span style="color: red;">(required)</span></label>
+                            <input type="text" id="thirdPname" required></input>
+                          </div>
+                          <div class="section-space">
+                            <label>Third-party's address: <span style="color: red;">(required)</span></label>
+                            <textarea rows="3" id="thirdPAddress" required></textarea>
+                          </div>                           
+                          <div class="section-space">
+                            <label>Third-party phone number: <span style="color: red;">(required)</span></label>
+                            <input type="text" id="thirdPPhone" required></input>
+                          </div>
+                          <div class="section-space">
+                            <label>Third party's email address: <span style="color: red;">(required)</span></label>
+                            <input type="text" id="thirdPEmail" required></input>
+                          </div>
+                          <div class="section-space">
+                            <label>Email address where the decision should be sent (if different from above): </label>
+                            <input type="text" id="serviceDocEmail" required></input>
+                          </div>                                                                              
+                          <h3 class="section-header">Respondent information</h3>
+
                           <div class="section-space">
                             <label>Respondent: <span style="color: red;">(required)</span></label>
                             <select id="respondentSelect" onchange="showRespondentOther()">
@@ -369,6 +428,17 @@
                               <div class="helper-text">Specify other respondent</div>
                               <input type="text" id="respondentOther" />
                             </div>
+                          </div>
+
+                          <div class="section-space">
+                            <label>Name(s) of respondent(s): <span style="color: red;">(required)</span></label>
+                            <div class="helper-text">Include the specific....</div>
+                            <input type="text" name="respondentInfo[]" rows="2" required></input>
+                          </div>
+                          <div class="section-space">
+                            <label>Addresses(s) of respondent(s): <span style="color: red;">(required)</span></label>
+                            <div class="helper-text">Enter each respondent's address.</div>
+                            <textarea name="respondentInfo[]" rows="2" required></textarea>
                           </div>
 
                           <div class="section-space">
@@ -645,23 +715,6 @@
                             <textarea id="preparedBy" rows="3" required></textarea>
                           </div>
 
-                          <div class="section-space">
-                            <label>The applicant's electronic address for the service of documents is: <span style="color: red;">(required)</span></label>
-                            <div class="helper-text">Set out the electronic address (email) for the service of documents specified in Form 141A of the Federal Court Rules, if any.</div>
-                            <textarea id="electronicAddress" rows="2" required></textarea>
-                          </div>
-
-                          <div class="section-space">
-                            <label>Name, Canadian address, and telephone number of solicitor or applicant: <span style="color: red;">(required)</span></label>
-                            <div class="helper-text">Enter the details of the solicitor or applicant.</div>
-                            <textarea id="solicitorInfo" rows="3" required></textarea>
-                          </div>
-
-                          <div class="section-space">
-                            <label>Name(s) and address(es) of respondent(s): <span style="color: red;">(required)</span></label>
-                            <div class="helper-text">Enter each respondent's name and address.</div>
-                            <textarea name="respondentInfo[]" rows="2" required></textarea>
-                          </div>
 
                           <div class="button-group">
                             <button id="generateSampleBtn" class="button button-secondary">Sample (for testing)</button>
@@ -690,6 +743,29 @@
   </div>
 
   <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Add event listener for phone number validation
+    const applicantPhoneInput = document.getElementById('applicantPhone');
+    const form = document.querySelector('form'); // Replace with your form's selector if it's not <form>
+
+    applicantPhoneInput.addEventListener('input', function () {
+      const phonePattern = /^\d{10}$/; // Regular expression for 10-digit phone number
+      if (!phonePattern.test(this.value)) {
+        this.setCustomValidity('Please enter a valid 10-digit phone number.');
+      } else {
+        this.setCustomValidity('');
+      }
+    });
+
+    // Prevent form submission if validation fails
+    form.addEventListener('submit', function (event) {
+      if (!applicantPhoneInput.checkValidity()) {
+        event.preventDefault(); // Stop form submission
+        applicantPhoneInput.reportValidity(); // Show validation message
+      }
+    });
+  });
+
     let sampleMode = false;
 
     function sampleText(text) {
