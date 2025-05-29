@@ -380,6 +380,20 @@
 
 
                           <div class="section-space">
+                            <label>Applicant(s) currently in Canada: <span style="color: red;">(required)</span></label>
+                            <div class="radio-group">
+                              <div class="radio-option">
+                                <input type="radio" id="inCanadaYes" name="inCanada" value="Yes" required>
+                                <label for="inCanadaYes">Yes</label>
+                              </div>
+                              <div class="radio-option">
+                                <input type="radio" id="inCanadaNo" name="inCanada" value="No" required>
+                                <label for="inCanadaNo">No</label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="section-space">
                             <label>Application for leave was prepared by: <span style="color: red;">(required)</span></label>
                             <div class="radio-group">
                               <div class="radio-option">
@@ -1292,6 +1306,19 @@
       <div class="section-space">
         <label>Applicant's email address: <span style="color: red;">(required)</span></label>
         <input type="email" class="form-control applicant-email" required>
+      </div>
+      <div class="section-space">
+        <label>Applicant(s) currently in Canada: <span style="color: red;">(required)</span></label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" name="inCanadaDynamic${Date.now()}" value="Yes" required>
+            <label>Yes</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="inCanadaDynamic${Date.now()}" value="No" required>
+            <label>No</label>
+          </div>
+        </div>
       </div>
       <button type="button" class="button button-secondary remove-applicant">Remove Applicant</button>
     `;
