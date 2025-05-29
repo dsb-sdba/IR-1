@@ -1,28 +1,30 @@
 <!DOCTYPE html>
-<!-- saved from url=(0042)https://dsb-sdba.github.io/IR-1/index.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
-  <title>Form IR-1 Generator - Federal Court</title>
-  <link rel="stylesheet" href="./Form IR-1 Generator - Federal Court_files/bootstrap.min.css">
-  <link rel="stylesheet" href="./Form IR-1 Generator - Federal Court_files/all.css">
-  <link rel="stylesheet" href="./Form IR-1 Generator - Federal Court_files/css">
-  <script src="./Form IR-1 Generator - Federal Court_files/jspdf.umd.min.js.download"></script>
-  <script src="./Form IR-1 Generator - Federal Court_files/FileSaver.min.js.download"></script>
-  <script src="./Form IR-1 Generator - Federal Court_files/html2canvas.min.js.download"></script>
-  <script src="./Form IR-1 Generator - Federal Court_files/jquery-3.6.0.min.js.download"></script>
-  <script src="./Form IR-1 Generator - Federal Court_files/bootstrap.bundle.min.js.download"></script>
-  <script>
-    window.jsPDF = window.jspdf.jsPDF;
-  </script>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Form IR-1 Generator - Federal Court | Formulaire IR-1 - Cour fédérale</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@wet-boew/wet-boew@4.0.61/dist/css/theme.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@wet-boew/wet-boew@4.0.61/dist/js/wet-boew.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
     /* CSS Styles */
+    
     #cont {
       text-align: left; /* Align the header to the left */
     }
+    
     body {
       font-family: sans-serif;
       margin: 20px;
       background-color: #f2f2ed;
+    }
+    legend {
+      font-weight: bold;
+      font-size: 1.1em;
     }
     h1, h2, h3 {
       color: #333;
@@ -261,26 +263,25 @@
     }
   </style>
 </head>
-<body>
+<body vocab="http://schema.org/" typeof="WebPage">
   <header class="header mb-05">
     <!-- ... header content ... -->
-  </header>
-
-  <div id="all">
-    <div id="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-12">
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="https://dsb-sdba.github.io/en/home">Home</a></li>
-                <li class="breadcrumb-item"><a href="https://dsb-sdba.github.io/IR-1/index.html">Representing Yourself</a></li>
-                <li class="breadcrumb-item">Form IR-1 Generator</li>
-              </ol>
-            </nav>
-          </div>
-        </div>
-
+  </head>
+  <body vocab="http://schema.org/" typeof="WebPage">
+    <div id="wb-cont">
+      <div class="container">
+        <h1 property="name" id="wb-cont">IR-1 Form Generator / Générateur du formulaire IR-1</h1>
+        <section>
+          <nav>
+            <ul class="list-inline">
+              <li class="list-inline-item"><a href="#" onclick="switchLang('en')">English</a></li>
+              <li class="list-inline-item"><a href="#" onclick="switchLang('fr')">Français</a></li>
+            </ul>
+          </nav>
+        </section>
+        <!-- Form goes here -->
+      </div>
+    </div>
         <div class="box">
           <div class="container-fluid">
             <div class="row">
@@ -340,7 +341,7 @@
                         <label>Application type: <span style="color: red;">(required)</span></label>
                         <div class="radio-group">
                           <div class="radio-option">
-                            <input type="radio" id="uniqueApplicant" name="applicantType" value="Unique" required="">
+                            <input type="radio" id="uniqueApplicant" name="applicantType" value="Unique" required="" checked>
                             <label for="uniqueApplicant">Unique applicant</label>
                           </div>
                           <div class="radio-option">
@@ -382,11 +383,11 @@
                             <label>Application for leave was prepared by: <span style="color: red;">(required)</span></label>
                             <div class="radio-group">
                               <div class="radio-option">
-                                <input type="radio" id="prepbyApplicant" name="prepType" value="Applicant" required onclick="toggleThirdPartyQuestions()">
+                                <input type="radio" id="prepbyApplicant" name="prepType" value="Applicant" required="" checked onclick="toggleThirdPartyQuestions()">
                                 <label for="prepbyApplicant">Applicant</label>
                               </div>
                               <div class="radio-option">
-                                <input type="radio" id="prepby3rdparty" name="prepType" value="Third Party" required onclick="toggleThirdPartyQuestions()">
+                                <input type="radio" id="prepby3rdparty" name="prepType" value="Third Party" required="" onclick="toggleThirdPartyQuestions()">
                                 <label for="prepby3rdparty">Third Party</label>
                               </div>
                             </div>
@@ -685,16 +686,7 @@
 
                           <hr class="divider">
 
-                          <h3 class="section-header">Contact information</h3>
-
-                          <div class="section-space">
-                            <label>The application for leave was prepared by: <span style="color: red;">(required)</span></label>
-                            <div class="helper-text">As applicable, set out the name of the solicitor or party signed below or the name, address and telephone number of any other person who, for a fee or other consideration, prepared the application for leave.</div>
-                            <textarea id="preparedBy" rows="3" required=""></textarea>
-                          </div>
-
-
-                          <div class="button-group">
+                                                    <div class="button-group">
                             <button id="generateSampleBtn" class="button button-secondary">Sample (for testing)</button>
                             <button id="generateCompletedBtn" class="button">Generate IR-1 PDF</button>
                           </div>
@@ -1335,4 +1327,5 @@
   </script>
 
 
-</body></html>
+
+</div></body></html>
