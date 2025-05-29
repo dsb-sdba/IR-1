@@ -373,12 +373,7 @@
                             <input type="text" id="applicantPhone" required="">
                           </div>
 
-                          <div class="section-space">
-                            <label>Applicant's email address: <span style="color: red;">(required)</span></label>
-                            <input type="text" id="electronicAddress" required="">
-                          </div>
-
-
+                         
                           <div class="section-space">
                             <label>Applicant(s) currently in Canada: <span style="color: red;">(required)</span></label>
                             <div class="radio-group">
@@ -420,13 +415,9 @@
                               <label>Third-party phone number: <span style="color: red;">(required)</span></label>
                               <input type="text" id="thirdPPhone" required="">
                             </div>
-                            <div class="section-space">
-                              <label>Third party's email address: <span style="color: red;">(required)</span></label>
-                              <input type="text" id="thirdPEmail" required="">
-                            </div>
                           </div>
                           <div class="section-space">
-                            <label>Email address where the decision should be sent (if different from above): </label>
+                            <label>Applicant or solicitor email address: </label>
                             <input type="text" id="serviceDocEmail" required="">
                           </div>                                                                              
                           <h3 class="section-header">Section 2 - Respondent information</h3>
@@ -545,33 +536,16 @@
 
                           <div class="section-space">
                             <label>If outside of Canada, please specify country: </label>
-                            <input type="text" id="outsideCanadaCountry">
+                            <select id="outsideCanadaCountry" class="form-control" style="width: 100%;">
+  <option value="">Select a country</option>
+</select>
                           </div>
 
                           <div class="section-space">
-                            <label>Tribunal file number: <span style="color: red;">(required)</span></label>
+                            <label>Tribunal file number(s): <span style="color: red;">(required)</span></label>
                             <input type="text" id="tribunalFileNo" required="">
                           </div>
-<!-- Family files begin -->
-                          <div class="section-space">
-                            <label id="family-label">Are other files from the same family underway? <span style="color: red;">(required)</span></label>
-                            <div id="familyContainer" class="radio-group">
-                              <div class="radio-option">
-                                <input type="radio" id="familyYes" name="family" value="Yes" onclick="showFamilyFiles()" tabindex="0"> 
-                                <label id="family-yes-label" for="familyYes">Yes</label>
-                              </div>
-                              <div class="radio-option">
-                                <input type="radio" id="familyNo" name="family" value="No" onclick="showFamilyFiles()" tabindex="0"> 
-                                <label id="family-no-label" for="familyNo">No</label>
-                              </div>
-                            </div>
-                            <div id="familyFiles"> <!-- This should include class="hidden" when the checkboxes work correctly -->
-                              <br>
-                              <label>Enter any file numbers associated with other family members: <span style="color: red;">(required)</span></label>
-                              <textarea id="familyFileNumbers" rows="4" required=""></textarea>
-                            </div>
-                          </div>
-<!-- Family files End -->
+
                           <div class="section-space" id="decisionDateField" style="display: block;">
                             <label>Date of decision: <span style="color: red;">(required)</span></label>
                             <!-- <div class="helper-text">yyyy-mm-dd</div> -->
@@ -625,23 +599,10 @@
                               </div>
                             </div>
                           </div>
-
-                          <div id="writtenReasonsRequestDiv" class="hidden section-space">
-                            <label>Are you requesting written reasons be provided? <span style="color: red;">(required)</span></label>
-                            <div id="writtenReasonsRequestContainer" class="radio-group">
-                              <div class="radio-option">
-                              <input type="radio" name="writtenReasonsRequest" value="Yes" id="writtenReasonsRequestYes"> 
-                              <label id="writtenReasonsRequest-yes-label" for="writtenReasonsRequestYes">Yes</label>
-                            </div>
-                            <div class="radio-option">
-                              <input type="radio" name="writtenReasonsRequest" value="No" id="writtenReasonsRequestNo"> 
-                              <label id="written-reasonsRequest-no-label" for="writtenReasonsRequestNo">No</label>
-                            </div>
-                            </div>
-                          </div><br>
+                           
                           <hr class="divider">
 
-                          <h3 class="section-header">Case-specific details</h3>
+                          <h3 class="section-header">Section 4 - Case-specific details</h3>
 
                           <div class="section-space">
                             <label>If the application for leave is granted, the applicant seeks the following relief by way of a judicial review: <span style="color: red;">(required)</span></label>
@@ -684,17 +645,20 @@
                           </div>
 
                           <div class="section-space">
-                            <label id="language-label">Language of proceeding: <span style="color: red;">(required)</span></label>
+                            <label id="language-label">Language of hearing: <span style="color: red;">(required)</span></label>
                             <div id="languageContainer" class="radio-group">
                               <div class="radio-option">
-                                <input type="checkbox" id="languageEnglish" name="language" value="English" onclick="uncheckBoth()" tabindex="0">
+                                <input type="radio" id="languageEnglish" name="language" value="English" required>
                                 <label id="language-english-label" for="languageEnglish">English</label>
                               </div>
                               <div class="radio-option">
-                                <input type="checkbox" id="languageFrench" name="language" value="French" onclick="uncheckBoth()" tabindex="0">
+                                <input type="radio" id="languageFrench" name="language" value="French" required>
                                 <label id="language-french-label" for="languageFrench">French</label>
                               </div>
-                              
+                              <div class="radio-option">
+                                <input type="radio" id="languageBoth" name="language" value="Both" required>
+                                <label id="language-both-label" for="languageBoth">Both</label>
+                              </div>
                             </div>
                           </div>
 
@@ -792,30 +756,6 @@
       mandamusDivider.style.display = (mandamusYes.checked || document.getElementById("mandamusNo").checked) ? "none" : "block";
     }
 
-    function showfamilyFiles() {
-      const familyYes = document.getElementById("familyYes");
-      // const mandamusDateField = document.getElementById("mandamusDateField");
-      // const decisionDateField = document.getElementById("decisionDateField");
-      // const communicationDateField = document.getElementById("communicationDateField");
-      // const mandamusDivider = document.getElementById("mandamusDivider");
-
-      if (familyYes.checked) {
-        familyFiles.classList.remove("hidden");
-      } else {
-        familyFiles.classList.add("hidden");
-        // decisionDateField.style.display = "block";
-        // communicationDateField.style.display = "block";
-      }
-      familyDivider.style.display = (familyYes.checked || document.getElementById("familyNo").checked) ? "none" : "block";
-    }
-
-    function showOutsideCanadaField() {
-      const outsideCanadaField = document.getElementById("outsideCanadaCountry");
-      if (outsideCanadaField) {
-        outsideCanadaField.classList.remove("hidden");
-      }
-    }
-
     function showOtherProceeding() {
       const proceedingSelect = document.getElementById("proceedingType");
       const otherProceedingDiv = document.getElementById("otherProceedingDiv");
@@ -827,27 +767,11 @@
       }
     }
 
-    function uncheckOthers() {
-      if (document.getElementById("languageBoth").checked) {
-        document.getElementById("languageEnglish").checked = false;
-        document.getElementById("languageFrench").checked = false;
-      }
-    }
 
     function uncheckBoth() {
       if (document.getElementById("languageEnglish").checked || document.getElementById("languageFrench").checked) {
         document.getElementById("languageBoth").checked = false;
       }
-    }
-
-    function addRespondent() {
-      const respondentsDiv = document.getElementById("respondents");
-      const newTextArea = document.createElement("textarea");
-      newTextArea.name = "respondentInfo[]";
-      newTextArea.rows = 2;
-      newTextArea.placeholder = "Enter respondent's name and address.";
-      newTextArea.required = true;
-      respondentsDiv.appendChild(newTextArea);
     }
 
     function showExtensionReason() {
@@ -868,17 +792,7 @@
       otherDiv.classList.toggle('hidden', select.value !== 'Other');
     }
 
-    function formatTextArea(text) {
-      return text.replace(/\n/g, "<br>");
-    }
-
-    function formatDate(dateString) {
-      if (!dateString) return "";
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      return new Date(dateString).toLocaleDateString('en-US', options);
-    }
-
-    function generateCompletedForm() {
+     function generateCompletedForm() {
       sampleMode = false;
       document.querySelectorAll('.highlight').forEach(element => element.classList.remove('highlight'));
       const missingFields = [];
@@ -1221,37 +1135,51 @@
 
     function generateSampleForm() {
       sampleMode = true;
-      document.getElementById("applicantName").value = "John Doe";
-      document.getElementById("respondentSelect").value = "The Minister of Citizenship and Immigration";
-      document.getElementById("provision").value = "22.1(1)";
-      document.getElementById("mandamusYes").checked = true;
-      document.getElementById("mandamusNo").checked = false;
-      document.getElementById("mandamusDate").value = "2024-03-01";
-      document.getElementById("decisionDate").value = "";
-      document.getElementById("communicationDate").value = "";
-      document.getElementById("tribunal").value = "Immigration, Refugees and Citizenship Canada – In Canada";
-      document.getElementById("tribunalFileNo").value = "12345-6789";
-      document.getElementById("outsideCanadaCountry").value = "Canada";
-      document.getElementById("proceedingType").value = "(PT1) TRV";
-      document.querySelector('input[name="writtenReasons"][value="Yes"]').checked = true;
-      showWrittenReasonsRequest();
-      document.getElementById("otherDetails").value = "Insert any case specific details here";
-      document.querySelector('input[name="extension"][value="Yes"]').checked = true;
-      showExtensionReason();
-      document.getElementById("extensionReason").value = "Due to unforeseen circumstances, an extension is requested for the following reasons:";
-      document.getElementById("reliefSought").value = "The applicant seeks the following relief:";
-      document.getElementById("grounds").value = "List the applicable grounds";
-      document.getElementById("hearingLocation").value = "Ottawa, ON - 90 Sparks Street";
-      document.getElementById("languageEnglish").checked = true;
-      document.getElementById("preparedBy").value = "Jane Doe, Solicitor";
-      document.getElementById("electronicAddress").value = "jane.doe@example.com";
-      document.getElementById("solicitorInfo").value = "Jane Doe Law Firm, 456 Legal Ave, Ottawa, ON";
-      document.querySelector('textarea[name="respondentInfo[]"]').value = "Government Building, 789 Government Rd, Ottawa, ON";
-      document.getElementById("mandamusDateField").classList.remove("hidden");
-      document.getElementById("decisionDateField").style.display = "none";
-      document.getElementById("communicationDateField").style.display = "none";
-      document.getElementById("respondentOtherDiv").classList.add("hidden");
-      generateAndDownloadPDF();
+
+      try {
+        // Section 1 - Applicant Information
+        document.getElementById("applicantName").value = "John Doe"; // Applicant's name
+        document.getElementById("solicitorInfo").value = "123 Main Street, Ottawa, ON, K1A 0A1"; // Valid Canadian address
+        document.getElementById("applicantPhone").value = "123-456-7890"; // Applicant's phone number
+        document.querySelector('input[name="inCanada"][value="Yes"]').checked = true; // Applicant(s) currently in Canada
+        document.querySelector('input[name="prepType"][value="Applicant"]').checked = true; // Application prepared by
+        document.getElementById("serviceDocEmail").value = "johndoe@example.com"; // Applicant or solicitor email address
+
+        // Section 2 - Respondent Information
+        document.getElementById("respondentSelect").value = "The Minister of Citizenship and Immigration"; // Respondent
+        document.querySelector('textarea[name="respondentInfo[]"]').value = "Government Building, 789 Government Rd, Ottawa, ON"; // Respondent's address
+
+        // Section 3 - Application Information
+        document.querySelector('input[name="extension"][value="Yes"]').checked = true; // Extension request
+        document.getElementById("extensionReason").value = "Due to unforeseen circumstances, an extension is requested."; // Extension reason
+        document.getElementById("provision").value = "22.1(1)"; // Provision under which the application is made
+        document.querySelector('input[name="mandamus"][value="Yes"]').checked = true; // Mandamus application
+        document.getElementById("mandamusDate").value = "2024-03-01"; // Date application submitted to tribunal
+        document.getElementById("tribunal").value = "Immigration, Refugees and Citizenship Canada – In Canada"; // Name of tribunal
+        document.getElementById("tribunalFileNo").value = "12345-6789"; // Tribunal file number
+        document.getElementById("proceedingType").value = "(PT1) TRV"; // Proceeding type
+        document.querySelector('input[name="writtenReasons"][value="Yes"]').checked = true; // Written reasons provided
+
+        // Section 4 - Case-Specific Details
+        document.getElementById("reliefSought").value = "The applicant seeks the following relief: Judicial review of the decision."; // Relief sought
+        document.getElementById("grounds").value = "The grounds for judicial review include procedural fairness and errors in law."; // Grounds for judicial review
+        document.getElementById("hearingLocation").value = "Ottawa, ON - 90 Sparks Street"; // Hearing location
+        document.getElementById("languageEnglish").checked = true; // Language of hearing
+
+        // Additional Fields
+        document.getElementById("preparedBy").value = "Jane Doe, Solicitor"; // Prepared by
+        document.getElementById("electronicAddress").value = "janedoe@example.com"; // Electronic address for service of documents
+
+        // Ensure visibility of hidden fields
+        document.getElementById("mandamusDateField").classList.remove("hidden");
+        document.getElementById("decisionDateField").style.display = "none";
+        document.getElementById("communicationDateField").style.display = "none";
+        document.getElementById("respondentOtherDiv").classList.add("hidden");
+
+        console.log("Sample form generated successfully.");
+      } catch (error) {
+        console.error("Error generating sample form:", error);
+      }
     }
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -1281,75 +1209,117 @@
     });
 
     document.addEventListener('DOMContentLoaded', function () {
-  const applicantsContainer = document.getElementById('applicants-container');
-  const addApplicantButton = document.getElementById('add-applicant');
-  const groupApplicantRadio = document.getElementById('groupApplicant');
   const uniqueApplicantRadio = document.getElementById('uniqueApplicant');
+  const groupApplicantRadio = document.getElementById('groupApplicant');
+  const addApplicantButton = document.getElementById('add-applicant');
 
-  // Function to add a new applicant
+  function toggleAddApplicantButton() {
+    if (groupApplicantRadio.checked) {
+      addApplicantButton.style.display = 'block'; // Show the button
+    } else {
+      addApplicantButton.style.display = 'none'; // Hide the button
+    }
+  }
+
+  // Add event listeners to the applicant type radio buttons
+  uniqueApplicantRadio.addEventListener('change', toggleAddApplicantButton);
+  groupApplicantRadio.addEventListener('change', toggleAddApplicantButton);
+
+  // Initialize the visibility of the button
+  toggleAddApplicantButton();
+});
+
+    document.addEventListener('DOMContentLoaded', function () {
+  const mandamusYes = document.getElementById('mandamusYes');
+  const mandamusNo = document.getElementById('mandamusNo');
+  const writtenReasonsContainer = document.getElementById('writtenReasonsContainer');
+  const decisionDateField = document.getElementById('decisionDateField');
+  const communicationDateField = document.getElementById('communicationDateField');
+
+  function toggleFieldsBasedOnMandamus() {
+    if (mandamusYes.checked) {
+      // Hide written reasons, decision date, and communication date fields
+      writtenReasonsContainer.classList.add('hidden');
+      decisionDateField.style.display = "none";
+      communicationDateField.style.display = "none";
+    } else {
+      // Show written reasons, decision date, and communication date fields
+      writtenReasonsContainer.classList.remove('hidden');
+      decisionDateField.style.display = "block";
+      communicationDateField.style.display = "block";
+    }
+  }
+
+  // Add event listeners to the mandamus radio buttons
+  mandamusYes.addEventListener('change', toggleFieldsBasedOnMandamus);
+  mandamusNo.addEventListener('change', toggleFieldsBasedOnMandamus);
+
+  // Initialize the visibility of the fields
+  toggleFieldsBasedOnMandamus();
+});
+  </script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+  const addApplicantButton = document.getElementById('add-applicant');
+  const applicantsContainer = document.getElementById('applicants-container');
+
   function addApplicant() {
+    // Create a new container for the applicant
     const applicantDiv = document.createElement('div');
-    applicantDiv.classList.add('applicant');
+    applicantDiv.classList.add('applicant-entry');
     applicantDiv.innerHTML = `
       <div class="section-space">
-        <label>Applicant's name <span style="color: red;">(required)</span></label>
-        <input type="text" class="form-control applicant-name" required>
+        <label>Applicant's name: <span style="color: red;">(required)</span></label>
+        <input type="text" class="form-control" name="applicantName required>
       </div>
       <div class="section-space">
         <label>Valid Canadian address of applicant: <span style="color: red;">(required)</span></label>
-        <textarea class="form-control applicant-address" rows="3" required></textarea>
+        <textarea class="form-control" name="applicantAddress[]" rows="3" required></textarea>
       </div>
       <div class="section-space">
         <label>Applicant's phone number: <span style="color: red;">(required)</span></label>
-        <input type="text" class="form-control applicant-phone" required>
-      </div>
-      <div class="section-space">
-        <label>Applicant's email address: <span style="color: red;">(required)</span></label>
-        <input type="email" class="form-control applicant-email" required>
-      </div>
-      <div class="section-space">
-        <label>Applicant(s) currently in Canada: <span style="color: red;">(required)</span></label>
-        <div class="radio-group">
-          <div class="radio-option">
-            <input type="radio" name="inCanadaDynamic${Date.now()}" value="Yes" required>
-            <label>Yes</label>
-          </div>
-          <div class="radio-option">
-            <input type="radio" name="inCanadaDynamic${Date.now()}" value="No" required>
-            <label>No</label>
-          </div>
-        </div>
+        <input type="text" class="form-control" name="applicantPhone[]" required>
       </div>
       <button type="button" class="button button-secondary remove-applicant">Remove Applicant</button>
     `;
+
+    // Append the new applicant fields to the container
     applicantsContainer.appendChild(applicantDiv);
 
-    // Add event listener to the remove button
+    // Add event listener to the "Remove Applicant" button
     applicantDiv.querySelector('.remove-applicant').addEventListener('click', function () {
       applicantDiv.remove();
     });
   }
 
-  // Toggle visibility of "Add Applicant" button based on application type
-  function toggleAddApplicantButton() {
-    if (uniqueApplicantRadio.checked) {
-      // Clear all dynamically added applicants
-      applicantsContainer.innerHTML = '';
-      addApplicantButton.style.display = 'none';
-    } else if (groupApplicantRadio.checked) {
-      addApplicantButton.style.display = 'block';
-    }
-  }
-
   // Add event listener to the "Add Applicant" button
   addApplicantButton.addEventListener('click', addApplicant);
+});
+  </script>
 
-  // Add event listeners to the radio buttons
-  groupApplicantRadio.addEventListener('change', toggleAddApplicantButton);
-  uniqueApplicantRadio.addEventListener('change', toggleAddApplicantButton);
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+  const countrySelect = document.getElementById('outsideCanadaCountry');
 
-  // Initialize the visibility of the buttons
-  toggleAddApplicantButton();
+  // Fetch country data from REST Countries API
+  fetch('https://restcountries.com/v3.1/all')
+    .then(response => response.json())
+    .then(data => {
+      // Sort countries alphabetically by name
+      const sortedCountries = data.sort((a, b) =>
+        a.name.common.localeCompare(b.name.common)
+      );
+
+      // Populate the dropdown
+      sortedCountries.forEach(country => {
+        const option = document.createElement('option');
+        option.value = country.cca2; // ISO 3166-1 alpha-2 code
+        option.textContent = country.name.common; // Country name
+        countrySelect.appendChild(option);
+      });
+    })
+    .catch(error => console.error('Error fetching country data:', error));
 });
   </script>
 
